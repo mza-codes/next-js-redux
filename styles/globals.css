@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    /* border: 0.5px solid black; */
+    outline: none;
+}
+
 .app-page {
     @apply bg-gradient-to-b from-green-300 to-fuchsia-600 min-h-screen w-full flex flex-col items-center justify-center;
+}
+
+.portrait-poster {
+    @apply max-h-[74vh] max-w-[90vw];
 }
 
 .btn-1 {
