@@ -3,34 +3,33 @@
 @tailwind utilities;
 
 .app-page {
-    @apply bg-gradient-to-b from-green-300 to-fuchsia-600 min-h-screen w-full flex flex-col items-center justify-center
+    @apply bg-gradient-to-b from-green-300 to-fuchsia-600 min-h-screen w-full flex flex-col items-center justify-center;
 }
 
 .btn-1 {
-    @apply bg-opacity-50 hover:bg-opacity-100 py-2 px-4 rounded-lg active:scale-95 font-medium
+    @apply bg-opacity-50 hover:bg-opacity-100 py-2 px-4 rounded-lg active:scale-95 font-medium transition-all duration-300;
 }
 
-
 .h1 {
-    @apply text-7xl font-black
+    @apply text-7xl font-black;
 }
 
 .h2 {
-    @apply text-6xl font-extrabold
+    @apply text-6xl font-extrabold;
 }
 
 .h3 {
-    @apply text-5xl font-bold
+    @apply text-5xl font-bold;
 }
 
 .h4 {
-    @apply text-4xl font-semibold
+    @apply text-4xl font-semibold;
 }
 
 .h5 {
-    @apply text-3xl font-semibold
+    @apply text-3xl font-medium;
 }
 
 .h6 {
-    @apply text-2xl font-semibold
+    @apply text-2xl font-medium;
 }
