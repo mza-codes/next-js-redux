@@ -27,9 +27,9 @@
 }
 
 .h5 {
-    @apply text-3xl font-semibold;
+    @apply text-3xl font-medium;
 }
 
 .h6 {
-    @apply text-2xl font-semibold;
+    @apply text-2xl font-medium;
 }

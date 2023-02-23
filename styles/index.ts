@@ -11,6 +11,12 @@ export const styles = {
         transform: "translateX(-50%)",
         justifyContent: "center",
     },
+    card: {
+        margin: '15px 10px',
+        padding: 0,
+        borderRadius: '16px',
+        backgroundColor: 'red'
+    },
     small: {
         gridRowEnd: "span 26",
     },
@@ -21,3 +27,5 @@ export const styles = {
         gridRowEnd: "span 45",
     },
 } as const;
+
+const sizes = ["span 38", "span 26", "span 33", "span 45"] as const;
