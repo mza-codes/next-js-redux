@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import API from "../api";
 import Error from "../components/Error";
@@ -8,11 +7,10 @@ type Props = { items: any[] | null };
 
 export default function GetData({ items }: Props) {
     const [data, setData] = useState<any[] | null>(items);
-    const loading = useRef(false);
-    const setLoading = (state: boolean) => (loading.current = state);
-
+    const [loading, setLoading] = useState(false);
     const page = useRef(2);
     const observer = useRef<any>();
+
     const lastItem = useCallback((node: any) => {
         if (loading) return; // loading state
         if (observer.current) observer.current?.disconnect();
@@ -35,7 +33,7 @@ export default function GetData({ items }: Props) {
         if (node) return observer.current.observe(node);
     }, []);
 
-    if (!items || !data) <Error />
+    if (!items || !data) <Error />;
     return (
         <main className="bg-green-4000 items-center m-2 p-2 flex flex-row gap-2 flex-wrap justify-center">
             {data?.map((movie, i) => {
@@ -54,7 +52,7 @@ export default function GetData({ items }: Props) {
 export const getServerSideProps = async (page = 1) => {
     let payload: any;
     try {
-        const data = await getMore(page);
+        const { data } = await API.get(`/movie/popular?page=${page}`);
         payload = data;
     } catch (err: any) {
         console.log("Error fetching,", err);

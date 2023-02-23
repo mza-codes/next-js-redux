@@ -9,10 +9,8 @@ type Props = {
 };
 
 export default function ViewMovie({ movie }: Props) {
-    console.log("SLUG: ", movie);
-
+    
     if (!movie) return <Error />;
-
     return (
         <main className="min-h-screen w-full h-auto ">
             <Image
