@@ -1,9 +1,5 @@
 import "../styles/globals.css";
-
-export const metadata = {
-    default: "Lok-D",
-    title: "%s | Lok-D",
-};
+import { genTitle } from "../utils";
 
 export default function RootLayout({
     children,
@@ -12,14 +8,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
+            <head></head>
             <body>
-                <main className="app-page">
-                    {/* Header */}
-
-                    {children}
-
-                    {/* Footer */}
-                </main>
+                <main className="app-page">{children}</main>
             </body>
         </html>
     );

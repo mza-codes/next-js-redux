@@ -4,7 +4,10 @@ import { useCallback, useRef, useState } from "react";
 import API from "../../api";
 import MovieCard from "../../components/MovieCard";
 
-type Props = { items: any[] | null };
+type Props = {
+    items: any[] | null;
+    currentPage: number;
+};
 
 export default function DisplayData({ items }: Props) {
     const [data, setData] = useState<any[] | null>(items);

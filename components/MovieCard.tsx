@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { SyntheticEvent } from "react";
 import { Movie } from "../@types";
 import { w500 } from "../contstants";
 
@@ -9,12 +12,18 @@ type Props = {
 };
 
 export default function MovieCard({ movie, classes }: Props) {
+
+    const handleFade = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+        console.log("Error Loading Image: ", e);
+        e.currentTarget.classList.add("img-pacleholder");
+    };
+
     return (
         <div
             className={`max-h-screen max-w-xs m-2 flex flex-col overflow-ellipsis p-2 gap-2 items-start border-0 border-black relative ${classes}`}
         >
             <Image
-                alt="_loading"
+                alt="Movie_Poster"
                 className={`rounded-md object-cover w-64 shadow-lg hover:shadow-md`}
                 src={
                     movie?.poster_path
@@ -25,6 +34,7 @@ export default function MovieCard({ movie, classes }: Props) {
                 }
                 width={250}
                 height={250}
+                onError={handleFade}
             />
 
             <div className="text-white text-left">
@@ -41,7 +51,7 @@ export default function MovieCard({ movie, classes }: Props) {
                     {movie?.overview} &nbsp;
                     <Link
                         href={`/movies/${movie?.id}`}
-                        className="text-black hover:text-rose-700"
+                        className="text-black hover:text-rose-700 font-semibold"
                     >
                         View
                     </Link>
