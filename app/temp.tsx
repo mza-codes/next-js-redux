@@ -1,8 +1,11 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+"use client";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthState } from "../slices/authSlice";
 import { AppState, wrapper } from "../store";
+
+export const metadata = {
+    title: "Temp",
+};
 
 export default function Home() {
     const auth = useSelector((s: AppState) => s.auth.userActive);
@@ -11,9 +14,6 @@ export default function Home() {
 
     return (
         <section>
-            <Head>
-                <title>Main Home</title>
-            </Head>
             <div className="bg-green-300 font-medium p-3 rounded-lg">
                 <center>{auth ? "Logged IN" : "Inactive Session"}</center>
             </div>

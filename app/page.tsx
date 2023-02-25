@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-export default function index() {
+export const metadata = {
+    title: "Home",
+    keywords: ["Next.js", "React", "JavaScript"],
+};
+
+export default function Page() {
     return (
         <main className="flex gap-2 items-center flex-col">
             <h1 className="h1">J-Hello World</h1>
