@@ -17,7 +17,7 @@ export default function ViewOneMovie({ movie }: Props) {
     function handleComplete(item: "banner" | "poster") {
         loaded.current[item] = true;
         const { banner, poster } = loaded.current;
-        if (banner && poster) {
+        if (banner) {
             setLoading(false);
         }
     }
@@ -36,7 +36,7 @@ export default function ViewOneMovie({ movie }: Props) {
                 onLoadingComplete={() => handleComplete("banner")}
             />
             <div className="flex flex-col md:flex-row justify-between">
-                <section className="m-3 p-2 text-white text-left flex flex-col max-w-[90vw] gap-2 md:w-1/2">
+                <section className="m-3 p-2 text-white text-left flex flex-col max-w-[90vw] gap-2">
                     <h1 className="h3 drop-shadow-lg">
                         {movie?.title ||
                             movie?.original_title ||
@@ -49,16 +49,22 @@ export default function ViewOneMovie({ movie }: Props) {
                     <p className="text-base overview drop-shadow-lg">
                         {movie?.overview} &nbsp;
                     </p>
+
+                    <div className="flex flex-row flex-wrap items-center gap-2">
+                        <button className="btn-1 text-black text-sm bg-white">
+                            Add to WatchList
+                        </button>
+                    </div>
                 </section>
-                <section className="m-3 p-2 text-white text-left flex flex-col gap-2 md:w-1/2">
+                <section className="m-3 p-2 items-center text-white md:items-end text-left flex flex-col gap-2 md:w-1/2">
                     <Image
                         alt="Poster"
                         src={`${POSTER_URL}${movie?.poster_path}`}
                         width={280}
-                        height={600}
-                        loading="eager"
-                        className="w-full h-full object-contain rounded-lg portrait-poster"
-                        priority={true}
+                        height={400}
+                        className="min-w-max add-bg h-full object-contain rounded-md portrait-poster"
+                        // loading="eager"
+                        // priority={true}
                         onLoadingComplete={() => handleComplete("poster")}
                     />
                 </section>

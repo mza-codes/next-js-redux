@@ -1,10 +1,11 @@
 import axios from "axios";
 
+if (!process.env.NEXT_PUBLIC_DOMAIN)
+    throw new Error("VARIABLE `NEXT_PUBLIC_DOMAIN` is Required!");
+
 const API = axios.create({
-    baseURL: `https://api.themoviedb.org/3`,
-    params: {
-        api_key: "14a7e4429fa0d8465645b61e335f68ce",
-    },
+    baseURL: process.env.NEXT_PUBLIC_DOMAIN!,
+    responseType: "json",
 });
 
 export default API;

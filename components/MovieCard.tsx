@@ -12,7 +12,6 @@ type Props = {
 };
 
 export default function MovieCard({ movie, classes }: Props) {
-
     const handleFade = (e: SyntheticEvent<HTMLImageElement, Event>) => {
         console.log("Error Loading Image: ", e);
         e.currentTarget.classList.add("img-pacleholder");
@@ -24,7 +23,7 @@ export default function MovieCard({ movie, classes }: Props) {
         >
             <Image
                 alt="Movie_Poster"
-                className={`rounded-md object-cover w-64 shadow-lg hover:shadow-md`}
+                className={`load-pacleholder min-h-[400px] rounded-md object-cover min-w-[280px] shadow-lg hover:shadow-md`}
                 src={
                     movie?.poster_path
                         ? w500 + movie?.poster_path
@@ -32,8 +31,11 @@ export default function MovieCard({ movie, classes }: Props) {
                         ? w500 + movie?.backdrop_path
                         : "/vercel.svg"
                 }
-                width={250}
-                height={250}
+                width={400}
+                height={280}
+                onLoadingComplete={(current) =>
+                    current.classList.remove("load-pacleholder")
+                }
                 onError={handleFade}
             />
 

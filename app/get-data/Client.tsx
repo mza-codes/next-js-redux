@@ -54,7 +54,9 @@ export default function DisplayData({ items }: Props) {
 
 async function getMore(page: number) {
     try {
-        const { data } = await API.get(`/movie/popular?page=${page}`);
+        const { data } = await API.get(
+            `/get-data?type=movie&cat=popular&page=${page}`
+        );
         return data;
     } catch (err: any) {
         console.log("Error fetching,", err);
