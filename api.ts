@@ -5,7 +5,6 @@ if (!process.env.NEXT_PUBLIC_DOMAIN)
 
 const API = axios.create({
     baseURL: process.env.NEXT_PUBLIC_DOMAIN!,
-    responseType: "json",
 });
 
 export default API;
