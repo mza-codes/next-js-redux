@@ -1,27 +1,17 @@
-# Next.js + Tailwind CSS Example
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+<p align="center">
+  <a href="#"><img src="https://github.com/mza-codes/minimal-react/blob/62fd10162f49d62abf1aa6b4ec1d5fadbab4a38f/public/logo.png" width="50" alt="apple-touch-icon-Copy" border="0"></a>
+  <br />
+  <h3 align="center">Next V13</h3>
+  <p align="center"> Single branch Clone <strong>git clone -b {branchname} {repository-url} </strong> </p>
+  <p align="center"> Integrated With <strong>tailwindcss!</strong> </p>
+  <p align="center">
+    <a href="https://github.com/mza-codes/"><strong>Author</strong></a>
+    ·
+    <a href="https://github.com/mza-codes/next-js-redux/issues/"><strong>Report</strong></a>
+    ·
+    <a href="https://github.com/mza-codes/next-js-redux/pulls/"><strong>Pull Request</strong></a>
+  </p>
+</p>
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+---
