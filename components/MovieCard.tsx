@@ -37,6 +37,7 @@ export default function MovieCard({ movie, classes }: Props) {
                     current.classList.remove("load-pacleholder")
                 }
                 onError={handleFade}
+                priority={true}
             />
 
             <div className="text-white text-left">

@@ -111,4 +111,4 @@ export interface Movie extends initalMovie {
     original_name?: string;
 }
 
-export interface DetailedMovie extends detailedMovie, Movie {}
+export interface DetailedMovie extends detailedMovie {}

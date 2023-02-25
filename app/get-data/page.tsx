@@ -1,5 +1,5 @@
-import API from "../../api";
 import Error from "../../components/Error";
+import TMDB from "../../server/tmdb";
 import { genTitle } from "../../utils";
 import DisplayData from "./Client";
 
@@ -11,9 +11,8 @@ export default async function GetData() {
     const page = Math.floor(Math.random() * 24) + 1;
     const items: any[] = await getInitialData(page);
 
+    /** @param { PREVENT FAILURE } */
     const ERR = items === undefined || items === null;
-    console.log("PAGEPROPS:", { items, ERR });
-
     if (!items || ERR) <Error />;
 
     return <DisplayData items={items} currentPage={page} />;
@@ -21,13 +20,9 @@ export default async function GetData() {
 
 async function getInitialData(page: number) {
     try {
-        const response = await fetch(
-            `${process.env
-                .NEXT_PUBLIC_DOMAIN!}/get-data?type=movie&cat=popular&page=${page}`
-        );
-        // API.get(`/get-data?type=movie&cat=popular&page=${page}`);
-        const data = await response.json();
-        console.log("APIRES: ", response, data);
+        const response = await TMDB.get(`/movie/popular?page=${page}`);
+        const { data } = response;
+        console.log("API_RES: ", response, "\n", data);
         return data?.results;
     } catch (err: any) {
         console.log(`Error fetching ARRAY: page=${page}: `, err);
