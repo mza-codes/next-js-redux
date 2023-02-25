@@ -1,1 +1,37 @@
-export const genTitle = (prefix: string) => `${prefix} | mFlux - Next`;
+import { HttpStatusCode } from "axios";
+import { NextApiResponse } from "next/types";
+
+export const genTitle = (prefix: string) => `${prefix} | mFlux - SSR`;
+
+export class APIResponse {
+    constructor(
+        res: NextApiResponse,
+        code: HttpStatusCode,
+        success: boolean,
+        msg: string,
+        payload = {}
+    ) {
+        res.status(code).json(genBody(success, msg, payload));
+        res.end();
+        // genRes(res, code, success, msg, payload);
+    }
+}
+
+export const genBody = (success = false, msg: string, payload: any) => {
+    return {
+        success,
+        message: msg ?? "",
+        ...payload,
+    };
+};
+
+async function genRes(
+    res: NextApiResponse,
+    code: HttpStatusCode,
+    success: boolean,
+    msg: string,
+    payload: any
+) {
+    if (!res || !code) throw new Error("res & code is required!");
+    return res.status(code).json(genBody(success, msg, payload));
+}

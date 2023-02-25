@@ -1,16 +1,16 @@
 "use client";
-
 import { useCallback, useRef, useState } from "react";
-import API from "../../api";
-import MovieCard from "../../components/MovieCard";
+import API from "../../../api";
+import MovieCard from "../../../components/MovieCard";
+import Loader from "../../loading";
 
 type Props = {
-    items: any[] | null;
-    currentPage: number;
+    suggestions: any[];
+    genre: number | string;
 };
 
-export default function DisplayData({ items }: Props) {
-    const [data, setData] = useState<any[] | null>(items);
+export default function GenreSuggestions({ suggestions, genre }: Props) {
+    const [data, setData] = useState<any[] | null>(suggestions);
     const [loading, setLoading] = useState(false);
     const page = useRef(2);
     const observer = useRef<any>();
@@ -32,23 +32,26 @@ export default function DisplayData({ items }: Props) {
                     } else return false;
                 }
             },
-            { rootMargin: "400px" }
+            { rootMargin: "350px" }
         );
         if (node) return observer.current.observe(node);
     }, []);
-
     return (
-        <main className="bg-green-4000 items-center m-2 p-2 flex flex-row gap-2 flex-wrap justify-center">
-            {data?.map((movie, i) => {
-                if (data?.length === i + 1) {
-                    return (
-                        <div key={movie?.id} ref={lastItem}>
-                            <MovieCard movie={movie} />
-                        </div>
-                    );
-                } else return <MovieCard movie={movie} key={movie?.id} />;
-            })}
-        </main>
+        <section className="col center pb-12">
+            <h2 className="h4">Suggestion</h2>
+            <div className="row center">
+                {data?.map((movie, i) => {
+                    if (data.length === i + 1) {
+                        return (
+                            <div key={movie?.id} ref={lastItem}>
+                                <MovieCard movie={movie} />
+                            </div>
+                        );
+                    } else return <MovieCard key={movie?.id} movie={movie} />;
+                })}
+            </div>
+            {loading && <Loader />}
+        </section>
     );
 }
 

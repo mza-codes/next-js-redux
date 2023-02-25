@@ -15,12 +15,32 @@
     @apply bg-black bg-opacity-40 animate-pulse font-bold text-white;
 }
 
+.load-pacleholder {
+    @apply bg-black bg-opacity-40 bg-opacity-40 animate-pulse;
+}
+
 .portrait-poster {
     @apply max-h-[74vh] max-w-[90vw];
 }
 
+.row {
+    @apply flex flex-row flex-wrap gap-2;
+}
+
+.col {
+    @apply flex flex-col gap-2;
+}
+
+.center {
+    @apply items-center justify-center;
+}
+
 .btn-1 {
-    @apply bg-opacity-50 hover:bg-opacity-100 py-2 px-4 rounded-lg active:scale-95 font-medium transition-all duration-300 ease-out;
+    @apply bg-opacity-50 hover:bg-opacity-100 py-2 px-4 rounded-lg active:scale-90 font-medium transition-all duration-300 ease-out;
+}
+
+.add-bg {
+    @apply bg-black bg-opacity-40;
 }
 
 .h1 {
