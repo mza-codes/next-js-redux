@@ -3,7 +3,7 @@ import { DetailedMovie } from "../../../@types";
 import Error from "../../../components/Error";
 import TMDB from "../../../server/tmdb";
 import { genTitle } from "../../../utils";
-import ViewOneMovie from "./Client";
+import ViewSingle from "./ViewSingle";
 import GenreSuggestions from "./Suggestions";
 
 export const metadata = { title: genTitle("Movie") };
@@ -19,19 +19,20 @@ export default async function Page({ params }: any) {
     const genre = movie?.genres?.[0]?.id ?? 35;
 
     const suggestions: any = await getData(
-        TMDB.get(
-            `/discover/movie?with_genres=${genre}&page=1`
-        ),
+        TMDB.get(`/discover/movie?with_genres=${genre}&page=1`),
         genre
     );
 
     return (
         <>
-            <ViewOneMovie movie={movie} />
+            <ViewSingle movie={movie} />
             {!suggestions ? (
                 <Error message="Unable to Fetch Suggestions!" />
             ) : (
-                <GenreSuggestions suggestions={suggestions?.results ?? []} genre={genre} />
+                <GenreSuggestions
+                    suggestions={suggestions?.results ?? []}
+                    genre={genre}
+                />
             )}
         </>
     );

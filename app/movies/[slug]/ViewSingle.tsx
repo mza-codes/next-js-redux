@@ -3,15 +3,14 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { DetailedMovie } from "../../../@types";
-import LoaderPlaceHolder from "../../../components/LoaderPlaceHolder";
-import ScreenLoader from "../../../components/ScreenLoader";
+import LoadBar from "../../../components/LoadBar";
 import { POSTER_URL } from "../../../contstants";
 
 type Props = {
     movie: DetailedMovie;
 };
 
-export default function ViewOneMovie({ movie }: Props) {
+export default function ViewSingle({ movie }: Props) {
     const [loading, setLoading] = useState(true);
     const loaded = useRef({ banner: false, poster: false });
 
@@ -26,10 +25,15 @@ export default function ViewOneMovie({ movie }: Props) {
     return (
         <main className="min-h-screen w-full h-auto">
             {/* {loading && <ScreenLoader />} */}
-            {loading && <LoaderPlaceHolder />}
+            <section className="relative">
+                {loading && <LoadBar loading={loading} />}
                 <Image
                     alt="Movie Banner"
-                    src={`${POSTER_URL}${movie?.backdrop_path}`}
+                    src={
+                        movie?.backdrop_path
+                            ? `${POSTER_URL}${movie?.backdrop_path}`
+                            : `https://picsum.photos/1920/1080`
+                    }
                     className="w-full h-full object-fill aspect-video shadow-lg"
                     width={1920}
                     height={1080}
@@ -37,7 +41,8 @@ export default function ViewOneMovie({ movie }: Props) {
                     priority={true}
                     onLoadingComplete={() => setLoading(false)}
                 />
-            <div className="flex z-20 flex-col md:flex-row justify-between">
+            </section>
+            <div className="flex z-40 flex-col md:flex-row justify-between">
                 <section className="m-3 p-2 text-white text-left flex flex-col max-w-[90vw] gap-2">
                     <h1 className="h3 drop-shadow-lg">
                         {movie?.title ||
@@ -56,6 +61,15 @@ export default function ViewOneMovie({ movie }: Props) {
                         <button className="btn-1 text-black text-sm bg-white">
                             Add to WatchList
                         </button>
+                        {movie?.genres?.map((genre) => (
+                            <span
+                                key={genre?.id}
+                                className="btn-2 text-sm"
+                                onClick={() => getGenres(genre?.id)}
+                            >
+                                {genre?.name}
+                            </span>
+                        ))}
                     </div>
                 </section>
                 <section className="m-3 p-2 items-center text-white md:items-end text-left flex flex-col gap-2 md:w-1/2">
@@ -73,4 +87,8 @@ export default function ViewOneMovie({ movie }: Props) {
             </div>
         </main>
     );
+}
+
+function getGenres(id: string | number) {
+    return;
 }
