@@ -39,6 +39,10 @@
     @apply bg-opacity-50 hover:bg-opacity-100 py-2 px-4 rounded-lg active:scale-90 font-medium transition-all duration-300 ease-out;
 }
 
+.btn-2 {
+    @apply py-2 px-4 rounded-none active:scale-90 font-medium transition-all duration-300 ease-out bg-gradient-to-br from-red-300 via-rose-400 to-purple-400 cursor-pointer hover:rounded-md;
+}
+
 .add-bg {
     @apply bg-black bg-opacity-40;
 }
@@ -65,4 +69,61 @@
 
 .h6 {
     @apply text-2xl font-medium;
+}
+
+/* LOADER BAR */
+.bar {
+    position: fixed;
+    top: 1;
+    z-index: 1502;
+    width: 0%;
+    height: 4px;
+    margin: 0 auto;
+    animation: loadHoriz2 3s linear 1s infinite alternate;
+}
+
+.horizontal-bar-wrap {
+    position: fixed;
+    top: 1;
+    z-index: 1502;
+    height: 6px;
+    width: 100%;
+}
+
+.bar1 {
+    animation-delay: 0s;
+    background: linear-gradient(to right, #ffff44, #00ffdd, #fc5692, #7efff4);
+    border-radius: 6px;
+    top: 0;
+    z-index: 1;
+}
+
+@keyframes loadHoriz2 {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    60% {
+        width: 60%;
+    }
+
+    74% {
+        width: 74%;
+    }
+
+    88% {
+        width: 88%;
+    }
+
+    94% {
+        width: 94%;
+    }
+
+    100% {
+        width: 100%;
+    }
 }

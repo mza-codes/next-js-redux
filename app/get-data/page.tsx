@@ -22,7 +22,6 @@ async function getInitialData(page: number) {
     try {
         const response = await TMDB.get(`/movie/popular?page=${page}`);
         const { data } = response;
-        console.log("API_RES: ", response, "\n", data);
         return data?.results;
     } catch (err: any) {
         console.log(`Error fetching ARRAY: page=${page}: `, err);

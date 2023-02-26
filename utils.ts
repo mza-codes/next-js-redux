@@ -35,3 +35,12 @@ async function genRes(
     if (!res || !code) throw new Error("res & code is required!");
     return res.status(code).json(genBody(success, msg, payload));
 }
+
+export function verifyEnv() {
+    console.warn("Verifying Environment Variables");
+    if (!process.env.TMDB_API_KEY)
+        throw new Error("VARIABLE: `TMDB_API_KEY` is Missing!");
+    if (!process.env.NEXT_PUBLIC_DOMAIN)
+        throw new Error("VARIABLE `NEXT_PUBLIC_DOMAIN` is Required!");
+    return;
+}

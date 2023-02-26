@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import { genTitle } from "../utils";
 
 export default function RootLayout({
     children,

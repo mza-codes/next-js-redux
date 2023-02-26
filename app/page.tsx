@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { genTitle } from "../utils";
+import { genTitle, verifyEnv } from "../utils";
 
 export const metadata: Metadata = {
     title: genTitle("Home"),
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+    verifyEnv();
     return (
         <section className="flex gap-2 items-center flex-col">
             <h1 className="h2">J-Hello World</h1>
