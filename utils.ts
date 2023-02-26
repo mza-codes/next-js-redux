@@ -1,7 +1,7 @@
 import { HttpStatusCode } from "axios";
 import { NextApiResponse } from "next/types";
 
-export const genTitle = (prefix: string) => `${prefix} | mFlux - SSR`;
+export const genTitle = (prefix: string) => `${prefix} | mFlux`;
 
 export class APIResponse {
     constructor(

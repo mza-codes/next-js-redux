@@ -13,7 +13,7 @@ export default function Page() {
     verifyEnv();
     return (
         <section className="flex gap-2 items-center flex-col">
-            <h1 className="h2">J-Hello World</h1>
+            <h1 className="h2">mFlux - SSR</h1>
 
             <Link href="/temp" className="bg-red-800 text-white btn-1">
                 Navigate to Temp
