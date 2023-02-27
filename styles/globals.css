@@ -9,6 +9,7 @@
 
 :root {
     --theme-color: #00000070;
+    --test: #ff2f28;
 }
 
 .app-page {
@@ -45,6 +46,10 @@
 
 .btn-2 {
     @apply py-2 px-4 rounded-none active:scale-90 font-medium transition-all duration-300 ease-out bg-gradient-to-br from-red-300 via-rose-400 to-purple-400 cursor-pointer hover:rounded-md;
+}
+
+.btn-3 {
+    @apply py-2 px-4 rounded-lg active:scale-90 font-medium transition-all duration-300 ease-out;
 }
 
 .add-bg {

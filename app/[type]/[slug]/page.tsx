@@ -10,7 +10,7 @@ export const metadata = { title: genTitle("Movie") };
 
 export default async function Page({ params }: any) {
     let { slug, type } = params;
-    type = type === "movie" ? type : "tv";
+    type = type === "tv" ? type : "movie";
     const movie: DetailedMovie | null = await getData(
         TMDB.get(
             `/${type ?? "movie"}/${
