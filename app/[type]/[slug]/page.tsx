@@ -3,15 +3,19 @@ import { DetailedMovie } from "../../../@types";
 import Error from "../../../components/Error";
 import TMDB from "../../../server/tmdb";
 import { genTitle } from "../../../utils";
-import ViewSingle from "./ViewSingle";
 import GenreSuggestions from "./Suggestions";
+import ViewSingle from "./ViewSingle";
 
 export const metadata = { title: genTitle("Movie") };
 
 export default async function Page({ params }: any) {
+    let { slug, type } = params;
+    type = type === "movie" ? type : "tv";
     const movie: DetailedMovie | null = await getData(
         TMDB.get(
-            `/movie/${params?.slug ?? 14325}?append_to_response=videos,credits`
+            `/${type ?? "movie"}/${
+                slug ?? 14325
+            }?append_to_response=videos,credits`
         ),
         params?.slug
     );
@@ -19,7 +23,7 @@ export default async function Page({ params }: any) {
     const genre = movie?.genres?.[0]?.id ?? 35;
 
     const suggestions: any = await getData(
-        TMDB.get(`/discover/movie?with_genres=${genre}&page=1`),
+        TMDB.get(`/discover/${type}?with_genres=${genre}&page=1`),
         genre
     );
 
@@ -30,6 +34,7 @@ export default async function Page({ params }: any) {
                 <Error message="Unable to Fetch Suggestions!" />
             ) : (
                 <GenreSuggestions
+                    type={type}
                     suggestions={suggestions?.results ?? []}
                     genre={genre}
                 />

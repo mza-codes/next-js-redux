@@ -20,6 +20,7 @@ export default function Page() {
                 src="/mFlux_logo.png"
                 width={150}
                 height={80}
+                priority
             />
 
             <Link href="/temp" className="bg-red-800 text-white btn-1">
