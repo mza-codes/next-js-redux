@@ -40,6 +40,7 @@ export default function ViewSingle({ movie }: Props) {
                     priority={true}
                     onLoadingComplete={() => setLoading(false)}
                 />
+                {/* <div className="fade_bottom"></div> */}
             </section>
             <div className="flex z-40 flex-col md:flex-row justify-between">
                 <section className="m-3 p-2 text-white text-left flex flex-col max-w-[90vw] gap-2">
@@ -61,13 +62,13 @@ export default function ViewSingle({ movie }: Props) {
                             Add to WatchList
                         </button>
                         {movie?.genres?.map((genre) => (
-                            <span
+                            <button
                                 key={genre?.id}
                                 className="btn-2 text-sm"
                                 onClick={() => getGenres(genre?.id)}
                             >
                                 {genre?.name}
-                            </span>
+                            </button>
                         ))}
                     </div>
                 </section>

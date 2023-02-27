@@ -20,16 +20,38 @@ export default function Page() {
                 src="/mFlux_logo.png"
                 width={150}
                 height={80}
+                priority
             />
 
-            <Link href="/temp" className="bg-red-800 text-white btn-1">
-                Test Route
-            </Link>
-            <Link href="/get-data" className="bg-orange-800 text-white btn-1">
-                Get Data
-            </Link>
+            <article className="text-xl font-medium text-black ml-3 p-2 max-w-[800px]">
+                <b className="text-4xl text-[#fff]">mFlux</b> is built with TMDB
+                API, Using <strong>Next.JS 13 </strong>{" "}
+                <b className="text-sm">(Currently in beta).</b>
+                <br />
+                The role of this application is to provide latest movies & tv
+                shows information. As every applications first priority is
+                Perfomance, We are currently working towards new features. This
+                Application uses Server Side Rendering & Image Optimizations,
+                Thanks to <b className="text-lg">Next.JS</b> team. <br />
+                The UI is integrated with the power of <b>TailwindCSS.</b>
+                <br />
+                Meanwhile you can view the{" "}
+                <strong>
+                    <a
+                        className="text-red-800 text-base hover:text-green-700"
+                        href="https://mflux.netlify.app/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Old Version
+                    </a>
+                </strong>{" "}
+                <b className="text-sm">(Based on React)</b>
+            </article>
 
-            <button className="bg-yellow-200 text-black btn-1">Button</button>
+            <Link href="/get-data" className="bg-black text-white btn-1">
+                Browse Collections
+            </Link>
         </section>
     );
 }

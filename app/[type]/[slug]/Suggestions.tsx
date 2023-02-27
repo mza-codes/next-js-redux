@@ -7,9 +7,10 @@ import Loader from "../../loading";
 type Props = {
     suggestions: any[];
     genre: number | string;
+    type: "movie" | "tv";
 };
 
-export default function GenreSuggestions({ suggestions, genre }: Props) {
+export default function GenreSuggestions({ suggestions, genre, type }: Props) {
     const [data, setData] = useState<any[] | null>(suggestions);
     const [loading, setLoading] = useState(false);
     const page = useRef(2);
@@ -23,7 +24,11 @@ export default function GenreSuggestions({ suggestions, genre }: Props) {
                 if (entries[0]?.isIntersecting) {
                     if (true) {
                         setLoading(true);
-                        const values = await getMore(genre, page.current);
+                        const values = await getMore({
+                            genre,
+                            page: page.current,
+                            type,
+                        });
                         if (!values) return;
                         setData((c: any) => [...c, ...values?.results]);
                         page.current++;
@@ -54,11 +59,16 @@ export default function GenreSuggestions({ suggestions, genre }: Props) {
         </section>
     );
 }
+type params = {
+    genre: string | number;
+    page: number;
+    type: "movie" | "tv";
+};
 
-async function getMore(genre: string | number, page: number) {
+async function getMore({ genre, type, page }: params) {
     try {
         const { data } = await API.get(
-            `/get-genres?type=movie&genre=${genre}&page=${page}`
+            `/get-genres?type=${type}&genre=${genre}&page=${page}`
         );
         return data;
     } catch (err: any) {

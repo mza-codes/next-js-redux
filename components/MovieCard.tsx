@@ -53,7 +53,7 @@ export default function MovieCard({ movie, classes }: Props) {
                 <p className="text-sm overview drop-shadow-lg">
                     {movie?.overview} &nbsp;
                     <Link
-                        href={`/movies/${movie?.id}`}
+                        href={`/${movie?.type ?? "movie"}/${movie?.id}`}
                         className="text-black hover:text-rose-700 font-semibold"
                     >
                         View

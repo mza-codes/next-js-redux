@@ -109,6 +109,7 @@ export interface Movie extends initalMovie {
     first_air_date?: string;
     name?: string;
     original_name?: string;
+    type?: string;
 }
 
 export interface DetailedMovie extends detailedMovie {
