@@ -29,7 +29,7 @@ export default function MovieCard({ movie, classes }: Props) {
                         ? w500 + movie?.poster_path
                         : movie?.backdrop_path
                         ? w500 + movie?.backdrop_path
-                        : "/vercel.svg"
+                        : "/404.jpg"
                 }
                 width={400}
                 height={280}

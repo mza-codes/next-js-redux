@@ -24,7 +24,6 @@ export default function ViewSingle({ movie }: Props) {
 
     return (
         <main className="min-h-screen w-full h-auto">
-            {/* {loading && <ScreenLoader />} */}
             <section className="relative">
                 {loading && <LoadBar loading={loading} />}
                 <Image
