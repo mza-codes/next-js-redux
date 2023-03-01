@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { DetailedMovie } from "../../../@types";
 import LoadBar from "../../../components/LoadBar";
@@ -8,11 +9,19 @@ import { POSTER_URL } from "../../../contstants";
 
 type Props = {
     movie: DetailedMovie;
+    type: "movie" | "tv";
 };
 
-export default function ViewSingle({ movie }: Props) {
+export default function ViewSingle({ movie, type }: Props) {
     const [loading, setLoading] = useState(true);
     const loaded = useRef({ banner: false, poster: false });
+    const router = useRouter();
+
+    function getGenres(id: string | number) {
+        setLoading(true);
+        router.push(`/discover/${type}/${movie?.genres?.[0]?.id ?? 28}`);
+        return;
+    }
 
     function handleComplete(item: "banner" | "poster") {
         loaded.current[item] = true;
@@ -87,8 +96,4 @@ export default function ViewSingle({ movie }: Props) {
             </div>
         </main>
     );
-}
-
-function getGenres(id: string | number) {
-    return;
 }
