@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { DetailedMovie } from "../../../@types";
 import LoadBar from "../../../components/LoadBar";
 import { POSTER_URL } from "../../../contstants";
+import Trailer from "./Trailer";
 
 type Props = {
     movie: DetailedMovie;
@@ -14,6 +15,7 @@ type Props = {
 
 export default function ViewSingle({ movie, type }: Props) {
     const [loading, setLoading] = useState(true);
+    const [isOpen, setIsOpen] = useState(true);
     const loaded = useRef({ banner: false, poster: false });
     const router = useRouter();
 
@@ -67,8 +69,12 @@ export default function ViewSingle({ movie, type }: Props) {
                     </p>
 
                     <div className="flex flex-row flex-wrap items-center gap-2">
-                        <button className="btn-1 text-black text-sm bg-white">
-                            Add to WatchList
+                        <button
+                            className="btn-1 text-black text-sm bg-white"
+                            type="button"
+                            onClick={() => setIsOpen(true)}
+                        >
+                            Get Trailers
                         </button>
                         {movie?.genres?.map((genre) => (
                             <button
@@ -94,6 +100,7 @@ export default function ViewSingle({ movie, type }: Props) {
                     />
                 </section>
             </div>
+            <Trailer movie={movie} open={[isOpen, setIsOpen]} />
         </main>
     );
 }
