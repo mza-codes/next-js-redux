@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import API from "../../api";
 import MovieCard from "../../components/MovieCard";
+import Loader from "../loading";
 
 type Props = {
     items: any[] | null;
@@ -38,28 +38,45 @@ export default function DisplayData({ items }: Props) {
     }, []);
 
     return (
-        <main className="bg-green-4000 items-center m-2 p-2 flex flex-row gap-2 flex-wrap justify-center">
-            {data?.map((movie, i) => {
-                if (data?.length === i + 1) {
-                    return (
-                        <div key={movie?.id} ref={lastItem}>
-                            <MovieCard movie={movie} />
-                        </div>
-                    );
-                } else return <MovieCard movie={movie} key={movie?.id} />;
-            })}
-        </main>
+        <section className="relative flex flex-col gap-3 items-center justify-center">
+            <main className="bg-green-4000 items-center m-2 p-2 flex flex-row gap-2 flex-wrap justify-center">
+                {data?.map((movie, i) => {
+                    if (data?.length === i + 1) {
+                        return (
+                            <div key={movie?.id} ref={lastItem}>
+                                <MovieCard movie={movie} />
+                            </div>
+                        );
+                    } else return <MovieCard movie={movie} key={movie?.id} />;
+                })}
+            </main>
+            {loading && <Loader />}
+        </section>
     );
 }
 
 async function getMore(page: number) {
     try {
-        const { data } = await API.get(
-            `/get-data?type=movie&cat=popular&page=${page}`
+        const response = await fetch(
+            `/api/v1/get-data?type=movie&cat=popular&page=${page}`,
+            { next: { revalidate: 60000 * 24 }, cache: "force-cache" }
         );
+        const data = await response.json();
         return data;
     } catch (err: any) {
         console.log("Error fetching,", err);
         return null;
     }
 }
+
+// async function getMore(page: number) {
+//     try {
+//         const { data } = await API.get(
+//             `/get-data?type=movie&cat=popular&page=${page}`
+//         );
+//         return data;
+//     } catch (err: any) {
+//         console.log("Error fetching,", err);
+//         return null;
+//     }
+// }

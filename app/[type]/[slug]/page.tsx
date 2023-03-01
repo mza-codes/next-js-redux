@@ -29,7 +29,7 @@ export default async function Page({ params }: any) {
 
     return (
         <>
-            <ViewSingle movie={movie} />
+            <ViewSingle movie={movie} type={type} />
             {!suggestions ? (
                 <Error message="Unable to Fetch Suggestions!" />
             ) : (

@@ -43,7 +43,7 @@ export default function GenreSuggestions({ suggestions, genre, type }: Props) {
     }, []);
     return (
         <section className="col center pb-12">
-            <h2 className="h4 font-bold">Similar Suggestions</h2>
+            <h2 className="h4 font-bold my-2">Similar Suggestions</h2>
             <div className="row center">
                 {data?.map((movie, i) => {
                     if (data.length === i + 1) {
