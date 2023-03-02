@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { DetailedMovie } from "../../../@types";
@@ -19,17 +20,17 @@ export default function ViewSingle({ movie, type }: Props) {
     const loaded = useRef({ banner: false, poster: false });
     const router = useRouter();
 
-    function getGenres(id: string | number) {
+    function getGenres() {
         setLoading(true);
-        router.push(`/discover/${type}/${movie?.genres?.[0]?.id ?? 28}`);
+        // router.push(`/discover/${type}/${id ?? 28}`);
         return;
     }
 
     function handleComplete(item: "banner" | "poster") {
         loaded.current[item] = true;
-        // const { banner, poster } = loaded.current;
-        // if (banner) {
-        //     setLoading(false);
+        //  const { banner, poster } = loaded.current;
+        //  if (banner) {
+        //      setLoading(false);
         // }
     }
 
@@ -77,13 +78,14 @@ export default function ViewSingle({ movie, type }: Props) {
                             Get Trailers
                         </button>
                         {movie?.genres?.map((genre) => (
-                            <button
-                                key={genre?.id}
+                            <Link
+                                onClick={getGenres}
                                 className="btn-2 text-sm"
-                                onClick={() => getGenres(genre?.id)}
+                                key={genre?.id}
+                                href={`/discover/${type}/${genre?.id ?? 28}`}
                             >
                                 {genre?.name}
-                            </button>
+                            </Link>
                         ))}
                     </div>
                 </section>

@@ -2,7 +2,7 @@ import { AxiosPromise } from "axios";
 import { DetailedMovie } from "../../../@types";
 import Error from "../../../components/Error";
 import TMDB from "../../../server/tmdb";
-import { genTitle } from "../../../utils";
+import { genRandom, genTitle } from "../../../utils";
 import GenreSuggestions from "./Suggestions";
 import ViewSingle from "./ViewSingle";
 
@@ -21,6 +21,7 @@ export default async function Page({ params }: any) {
     );
     if (!movie) return <Error />;
     const genre = movie?.genres?.[0]?.id ?? 35;
+    const page = genRandom(4);
 
     const suggestions: any = await getData(
         TMDB.get(`/discover/${type}?with_genres=${genre}&page=1`),
@@ -34,6 +35,7 @@ export default async function Page({ params }: any) {
                 <Error message="Unable to Fetch Suggestions!" />
             ) : (
                 <GenreSuggestions
+                    currentPage={page + 1}
                     type={type}
                     suggestions={suggestions?.results ?? []}
                     genre={genre}
