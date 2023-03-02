@@ -8,13 +8,22 @@ type Props = {
     suggestions: any[];
     genre: number | string;
     type: "movie" | "tv";
+    currentPage?: number;
 };
 
-export default function GenreSuggestions({ suggestions, genre, type }: Props) {
+export default function GenreSuggestions({
+    suggestions,
+    genre,
+    type,
+    currentPage = 2,
+}: Props) {
     const [data, setData] = useState<any[] | null>(suggestions);
     const [loading, setLoading] = useState(false);
-    const page = useRef(2);
+    const [finished, setFinished] = useState(false);
+    const page = useRef(currentPage);
     const observer = useRef<any>();
+
+    console.log("PAGE VALUES: ", { currentPage, page });
 
     const lastItem = useCallback((node: any) => {
         if (loading) return; // loading state
@@ -29,7 +38,10 @@ export default function GenreSuggestions({ suggestions, genre, type }: Props) {
                             page: page.current,
                             type,
                         });
-                        if (!values) return;
+                        if (!values) {
+                            setFinished(true);
+                            return;
+                        }
                         setData((c: any) => [...c, ...values?.results]);
                         page.current++;
                         setLoading(false);
@@ -56,6 +68,7 @@ export default function GenreSuggestions({ suggestions, genre, type }: Props) {
                 })}
             </div>
             {loading && <Loader />}
+            {finished && <h2 className="h4 font-black">End of Section!</h2>}
         </section>
     );
 }

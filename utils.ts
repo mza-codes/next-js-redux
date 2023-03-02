@@ -44,3 +44,7 @@ export function verifyEnv() {
         throw new Error("VARIABLE `NEXT_PUBLIC_DOMAIN` is Required!");
     return;
 }
+
+export function genRandom(limit: number) {
+    return Math.floor(Math.random() * limit) + 1;
+}
