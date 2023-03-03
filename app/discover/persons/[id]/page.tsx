@@ -12,7 +12,7 @@ export default async function GetActorSSR({ params }: Props) {
     const { id } = params;
     try {
         const { data: person } = await TMDB.get(`/person/${id}`);
-        console.log("PERSON: ", person);
+        
         return <PersonPage actor={person} />;
     } catch (err) {
         console.log("Error Fetching Actor SSR: ", err);

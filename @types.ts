@@ -117,6 +117,32 @@ const detailedMovie = {
     },
 };
 
+const bio = {
+    adult: false,
+    also_known_as: [
+        "Άνια Τέιλορ-Τζόι",
+        "Аня Тейлор-Джой",
+        "安雅·泰勒-乔伊",
+        "安雅‧泰勒-喬伊",
+        "안야 테일러조이",
+        "アニャ・テイラー＝ジョイ",
+        "アニャ・テイラー・ジョイ",
+    ],
+    biography:
+        "Anya-Josephine Marie Taylor-Joy (born 16 April 1996) is a British-American actress and model. She left school at age sixteen and began to pursue an acting career. After small television roles, she made her film debut with the lead role of Thomasin in the horror film The Witch (2015). She went on to star in the horror film Split and the black comedy Thoroughbreds (both 2017). She also appeared in the drama miniseries The Miniaturist (2017), the fifth and sixth series of Peaky Blinders (2019–2022) and The Dark Crystal: Age of Resistance (2019), and the superhero film Glass (2019), reprising her role from Split. Taylor-Joy will voice Princess Peach in the upcoming Mario film (2022) and portray the title character in Furiosa (2024).",
+    birthday: "1996-04-16",
+    deathday: null,
+    gender: 1,
+    homepage: null,
+    id: 1397778,
+    imdb_id: "nm5896355",
+    known_for_department: "Acting",
+    name: "Anya Taylor-Joy",
+    place_of_birth: "Miami, Florida, USA",
+    popularity: 39.461,
+    profile_path: "/8YUcwFAOBK3Yt5jnj9G2U8IffD.jpg",
+};
+
 type initalMovie = Partial<typeof movie>;
 type detailedMovie = Partial<typeof detailedMovie>;
 

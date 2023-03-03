@@ -66,7 +66,7 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
 
                 {actor
                     ? cast?.slice(0, 25).map((person, i) => (
-                          <Link href={`/discover/actors/${person?.id}`}>
+                          <Link href={`/discover/persons/${person?.id}`}>
                               <ActorSmallPhoto
                                   person={person}
                                   key={
@@ -78,7 +78,7 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                           </Link>
                       ))
                     : crew?.slice(0, 25).map((person, i) => (
-                          <Link href={`/discover/actors/${person?.id}`}>
+                          <Link href={`/discover/persons/${person?.id}`}>
                               <CrewSmallPhoto
                                   person={person}
                                   key={
