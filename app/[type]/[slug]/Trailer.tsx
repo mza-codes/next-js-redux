@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { DetailedMovie } from "../../../@types";
+import { AiFillCloseSquare } from "react-icons/ai";
 
 type Props = {
     movie: DetailedMovie;
@@ -45,10 +46,10 @@ export default function Trailer({ movie, open }: Props) {
                 </select>
                 <button
                     onClick={handleClose}
-                    className="absolute text- font-black right-2 btn-1 bg-[red]"
+                    className="absolute text-rose-800 text-4xl right-2 btn-1 "
                     style={{ borderRadius: "50%" }}
                 >
-                    {"X"}
+                    <AiFillCloseSquare />
                 </button>
             </div>
             <div className="w-full flex items-center justify-center text-center p-1 m-0 ">

@@ -1,25 +1,25 @@
 "use client";
 
-import { Person } from "../@types";
+import { Crew } from "../@types";
 import { GoHeart } from "react-icons/go";
 import Image from "next/image";
 
 type Props = {
-    person: Person;
+    person: Crew;
 };
 
-export const ActorSmallPhoto = ({ person }: Props) => {
+export const CrewSmallPhoto = ({ person }: Props) => {
     return (
         <div className="mx-1 p-3">
             <div className="relative">
                 <Image
-                    onLoadingComplete={(e) =>
-                        e.classList.remove("load-pacleholder")
-                    }
                     width={150}
                     height={150}
                     loading="lazy"
                     alt="person_avatar"
+                    onLoadingComplete={(e) =>
+                        e.classList.remove("load-pacleholder")
+                    }
                     src={
                         person?.profile_path
                             ? `https://image.tmdb.org/t/p/w300${person?.profile_path}`
@@ -39,7 +39,9 @@ export const ActorSmallPhoto = ({ person }: Props) => {
                 {person?.name || person?.original_name}
             </span>
             <h4 className="text-gray-50 text-xs max-w-[100%]">
-                {person?.character}
+                {person?.job ??
+                    person?.known_for_department ??
+                    person?.department}
             </h4>
         </div>
     );

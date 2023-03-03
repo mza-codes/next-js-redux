@@ -1,14 +1,20 @@
 "use client";
 
 import { RefObject, useRef } from "react";
-import { Person } from "../@types";
+import { Crew, Person } from "../@types";
 import { ActorSmallPhoto } from "./ActorAvatar";
+import { MdNavigateNext } from "react-icons/md";
+import { GrFormPrevious } from "react-icons/gr";
+import { CrewSmallPhoto } from "./CrewAvatar";
 
 type Props = {
-    cast: Person[];
+    cast?: Person[];
+    crew?: Crew[];
+    actor?: boolean;
+    title: string;
 };
 
-export default function PersonBar({ cast }: Props) {
+export default function PersonBar({ cast, crew, actor = false, title }: Props) {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const handleScroll = (
@@ -31,11 +37,11 @@ export default function PersonBar({ cast }: Props) {
         }
     };
     return (
-        <div className="max-w-[98vw] px-3 relative persons-container">
-            <h2 className="font-righteous text-2xl py-2 ml-4">
-                Top Cast &nbsp;
-                <span className="py-1 px-2 bg-green-700 font-poppins text-sm rounded-md ">
-                    {cast?.length}
+        <div className="max-w-[98vw] mx-auto px-3 relative persons-container">
+            <h2 className="font-righteous text-2xl py-2 ml-3 font-bold">
+                {title} &nbsp;
+                <span className="py-1 px-2 bg-green-200 font-black font-poppins text-sm rounded-md">
+                    {actor ? cast?.length : crew?.length}
                 </span>
             </h2>
             <div
@@ -43,30 +49,45 @@ export default function PersonBar({ cast }: Props) {
                 className="w-full h-auto flex overflow-hidden persons-container"
             >
                 <button
-                    onClick={(e) => handleScroll("prev", scrollRef)}
-                    onMouseEnter={(e) => handleScroll("prev", scrollRef)}
-                    className="absolute top-0 bottom-0 text-2xl left-0 text-orange-200 hover:text-black rounded-2xl hover:bg-white hover:opacity-50"
+                    onClick={() => handleScroll("prev", scrollRef)}
+                    onMouseEnter={() => handleScroll("prev", scrollRef)}
+                    className="absolute top-0 bottom-0 text-2xl z-50 left-0 hover:text-black active:scale-95 rounded-sm hover:bg-white hover:opacity-50"
                 >
-                    prev
+                    <GrFormPrevious />
                 </button>
                 <button
-                    onClick={(e) => handleScroll("next", scrollRef)}
-                    onMouseEnter={(e) => handleScroll("next", scrollRef)}
-                    className="absolute top-0 bottom-0 text-2xl right-0 text-orange-200 hover:text-black rounded-2xl hover:bg-white hover:opacity-50"
+                    onClick={() => handleScroll("next", scrollRef)}
+                    onMouseEnter={() => handleScroll("next", scrollRef)}
+                    className="absolute top-0 bottom-0 text-2xl z-50 right-0 hover:text-black active:scale-95 rounded-sm hover:bg-white hover:opacity-50"
                 >
-                    next
+                    <MdNavigateNext />
                 </button>
 
-                {cast?.slice(0, 25).map((person, i) => (
-                    <ActorSmallPhoto
-                        person={person}
-                        key={
-                            person?.id * i - i ||
-                            person?.id ||
-                            person?.credit_id
-                        }
-                    />
-                ))}
+                {actor
+                    ? cast
+                          ?.slice(0, 25)
+                          .map((person, i) => (
+                              <ActorSmallPhoto
+                                  person={person}
+                                  key={
+                                      person?.id * i - i ||
+                                      person?.id ||
+                                      person?.credit_id
+                                  }
+                              />
+                          ))
+                    : crew
+                          ?.slice(0, 25)
+                          .map((person, i) => (
+                              <CrewSmallPhoto
+                                  person={person}
+                                  key={
+                                      person?.id * i - i ||
+                                      person?.id ||
+                                      person?.credit_id
+                                  }
+                              />
+                          ))}
             </div>
         </div>
     );

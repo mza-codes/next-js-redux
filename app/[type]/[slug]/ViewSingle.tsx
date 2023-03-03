@@ -100,7 +100,12 @@ export default function ViewSingle({ movie, type }: Props) {
                 </section>
             </div>
             <Trailer movie={movie} open={[isOpen, setIsOpen]} />
-            <PersonBar cast={movie?.credits?.cast?.slice(0, 30) ?? []} />
+            <PersonBar
+                title="Top Cast"
+                actor={true}
+                cast={movie?.credits?.cast ?? []}
+            />
+            <PersonBar title="Top Crew" actor={false} crew={movie?.credits?.crew ?? []} />
         </main>
     );
 }

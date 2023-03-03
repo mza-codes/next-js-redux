@@ -94,10 +94,9 @@
 }
 
 /* PersonBar */
-/* .persons-container {
-    overflow: hidden;
-    overflow-x: scroll;
-} */
+.actor-avatar{
+    @apply cursor-pointer hover:scale-105 active:scale-90 transition-all ease-linear
+}
 
 .persons-container::-webkit-scrollbar {
     display: none;
