@@ -10,7 +10,7 @@ type Props = {
 
 export default function PersonPage({ actor }: Props) {
     return (
-        <section className={`flex flex-row flex-wrap justify-evenly`}>
+        <section className={`flex flex-row flex-wrap justify-evenly mt-4`}>
             <div className="w-full md:w-1/2 lg:w-1/2 max-w-md min-w-[280px] p-3 max-h-fit relative">
                 <div className="flex items-center justify-center">
                     <div className="relative">

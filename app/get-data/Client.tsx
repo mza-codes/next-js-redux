@@ -6,13 +6,13 @@ import Loader from "../loading";
 
 type Props = {
     items: any[] | null;
-    currentPage: number;
+    currentPage?: number;
 };
 
-export default function DisplayData({ items }: Props) {
+export default function DisplayData({ items,currentPage = 2 }: Props) {
     const [data, setData] = useState<any[] | null>(items);
     const [loading, setLoading] = useState(false);
-    const page = useRef(2);
+    const page = useRef(currentPage);
     const observer = useRef<any>();
 
     const lastItem = useCallback((node: any) => {
@@ -39,7 +39,7 @@ export default function DisplayData({ items }: Props) {
 
     return (
         <section className="relative flex flex-col gap-3 items-center justify-center">
-            <main className="bg-green-4000 items-center m-2 p-2 flex flex-row gap-2 flex-wrap justify-center">
+            <main className="items-center m-2 p-2 flex flex-row gap-2 flex-wrap justify-center">
                 {data?.map((movie, i) => {
                     if (data?.length === i + 1) {
                         return (

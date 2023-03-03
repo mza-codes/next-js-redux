@@ -13,4 +13,6 @@ export const HandledText = styled.p`
 /**
  * @param {`/person/${id}`}
  * @param {`/discover/movie?with_cast=${id}&page=${page}`}
+ * @see ---
+ * @param {`/discover/movie?with_cast=${id}&page=1`}
  * */
