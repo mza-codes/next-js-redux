@@ -5,16 +5,18 @@ import GenreSuggestions from "../../../[type]/[slug]/Suggestions";
 
 export default async function GetGenresSSR({ params }: any) {
     let { genre, type } = params;
-    type = type === "tv" ? type : "movie";
+    const ref = type === "tv" ? type : "movie";
     const page = genRandom(8);
 
     try {
         const { data } = await TMDB.get(
-            `/discover/${type}?with_genres=${genre}&page=${page}`
+            `/discover/${ref}?with_genres=${genre}&page=${page}`
         );
         if (data?.results?.length <= 0)
             return (
-                <Error message={`Unable to fetch Genres with ID ${genre}`} />
+                <Error
+                    message={`Unable to fetch ${type}(s) with ID: ${genre}`}
+                />
             );
         else
             return (

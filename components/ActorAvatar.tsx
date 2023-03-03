@@ -3,6 +3,7 @@
 import { Person } from "../@types";
 import { GoHeart } from "react-icons/go";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
     person: Person;
@@ -12,6 +13,7 @@ export const ActorSmallPhoto = ({ person }: Props) => {
     return (
         <div className="mx-1 p-3">
             <div className="relative">
+            <Link href={`/discover/persons/${person?.id}`}>
                 <Image
                     onLoadingComplete={(e) =>
                         e.classList.remove("load-pacleholder")
@@ -27,6 +29,7 @@ export const ActorSmallPhoto = ({ person }: Props) => {
                     }
                     className="load-pacleholder actor-avatar rounded-lg min-w-[124px] max-h-[150px] w-36 h-36 object-cover aspect-square"
                 />
+                </Link>
                 <div
                     className="icon text-rose-600 hover:text-rose-500 z-[104] opacity-0 hover:opacity-100 cursor-pointer absolute right-1 top-1"
                     title="Add To Favourites"

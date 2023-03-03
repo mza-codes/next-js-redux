@@ -1,5 +1,5 @@
 import { AxiosPromise } from "axios";
-import { DetailedMovie } from "../../../@types";
+import { Crew, DetailedMovie, Person } from "../../../@types";
 import Error from "../../../components/Error";
 import TMDB from "../../../server/tmdb";
 import { genRandom, genTitle } from "../../../utils";
@@ -11,6 +11,7 @@ export const metadata = { title: genTitle("Movie") };
 export default async function Page({ params }: any) {
     let { slug, type } = params;
     type = type === "tv" ? type : "movie";
+
     const movie: DetailedMovie | null = await getData(
         TMDB.get(
             `/${type ?? "movie"}/${
@@ -20,6 +21,12 @@ export default async function Page({ params }: any) {
         params?.slug
     );
     if (!movie) return <Error />;
+
+    // @ts-ignore
+    movie.credits.cast = await filterArray(movie?.credits?.cast ?? []);
+    // @ts-ignore
+    movie.credits.crew = await filterArray(movie?.credits?.crew ?? []);
+
     const genre = movie?.genres?.[0]?.id ?? 35;
     const page = genRandom(4);
 
@@ -43,6 +50,22 @@ export default async function Page({ params }: any) {
             )}
         </>
     );
+}
+
+type mix = Crew[] | Person[];
+async function filterArray(arr: mix) {
+    return new Promise<mix | []>((resolve, reject) => {
+        let queue: any[] = [];
+        for (let i = 0; i <= arr.length; i++) {
+            const current = arr[i];
+            queue.push(current);
+            if (queue.includes(current)) {
+                queue = queue.filter((v) => v?.id !== current?.id);
+                queue.push(current);
+            }
+        }
+        resolve(queue);
+    });
 }
 
 async function getData(request: AxiosPromise, slug: string | number) {

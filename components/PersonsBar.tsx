@@ -69,11 +69,7 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                           .map((person, i) => (
                               <ActorSmallPhoto
                                   person={person}
-                                  key={
-                                      person?.id * i - i ||
-                                      person?.id ||
-                                      person?.credit_id
-                                  }
+                                  key={person?.id}
                               />
                           ))
                     : crew
@@ -81,14 +77,15 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                           .map((person, i) => (
                               <CrewSmallPhoto
                                   person={person}
-                                  key={
-                                      person?.id * i - i ||
-                                      person?.id ||
-                                      person?.credit_id
-                                  }
+                                  key={person?.id}
                               />
                           ))}
             </div>
         </div>
     );
 }
+
+/**
+ * @param { UNIQUE KEY }
+ * person?.id * i - i || person?.id || person?.credit_id
+ * */
