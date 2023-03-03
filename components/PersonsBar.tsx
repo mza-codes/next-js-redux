@@ -6,6 +6,7 @@ import { ActorSmallPhoto } from "./ActorAvatar";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { CrewSmallPhoto } from "./CrewAvatar";
+import Link from "next/link";
 
 type Props = {
     cast?: Person[];
@@ -64,9 +65,8 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                 </button>
 
                 {actor
-                    ? cast
-                          ?.slice(0, 25)
-                          .map((person, i) => (
+                    ? cast?.slice(0, 25).map((person, i) => (
+                          <Link href={`/discover/actors/${person?.id}`}>
                               <ActorSmallPhoto
                                   person={person}
                                   key={
@@ -75,10 +75,10 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                                       person?.credit_id
                                   }
                               />
-                          ))
-                    : crew
-                          ?.slice(0, 25)
-                          .map((person, i) => (
+                          </Link>
+                      ))
+                    : crew?.slice(0, 25).map((person, i) => (
+                          <Link href={`/discover/actors/${person?.id}`}>
                               <CrewSmallPhoto
                                   person={person}
                                   key={
@@ -87,7 +87,8 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                                       person?.credit_id
                                   }
                               />
-                          ))}
+                          </Link>
+                      ))}
             </div>
         </div>
     );
