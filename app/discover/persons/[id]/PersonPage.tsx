@@ -15,6 +15,8 @@ export default function PersonPage({ actor }: Props) {
                 <div className="flex items-center justify-center">
                     <div className="relative">
                         <Image
+                            priority={true}
+                            loading="eager"
                             width={480}
                             height={640}
                             className="w-auto rounded-3xl"
@@ -32,7 +34,7 @@ export default function PersonPage({ actor }: Props) {
                     </div>
                 </div>
             </div>
-            <div className="min-w-[280px] xl:max-w-[46vw] text-center ml-2 lg:max-w-[46vw] px-3 xl:text-start lg:text-start sm:text-center sm:mx-w-[80vw]">
+            <div className="min-w-[280px] xl:max-w-[46vw] text-center ml-2 py-2 lg:max-w-[46vw] px-3 xl:text-start lg:text-start sm:text-center sm:mx-w-[80vw]">
                 <h1 className={"text-4xl py-1"}>{actor?.name}</h1>
                 <h2 className="text-3xl py-1">{actor?.place_of_birth}</h2>
                 <p className="text-2xl py-1">

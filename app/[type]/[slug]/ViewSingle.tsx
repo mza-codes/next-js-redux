@@ -18,6 +18,10 @@ export default function ViewSingle({ movie, type }: Props) {
     const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(true);
     const loaded = useRef({ banner: false, poster: false });
+    const has = {
+        crew: movie?.credits?.crew?.length ?? 0 >= 1,
+        cast: movie?.credits?.cast?.length ?? 0 >= 1,
+    };
 
     function getGenres() {
         setLoading(true);
@@ -100,12 +104,28 @@ export default function ViewSingle({ movie, type }: Props) {
                 </section>
             </div>
             <Trailer movie={movie} open={[isOpen, setIsOpen]} />
-            <PersonBar
-                title="Top Cast"
-                actor={true}
-                cast={movie?.credits?.cast ?? []}
-            />
-            <PersonBar title="Top Crew" actor={false} crew={movie?.credits?.crew ?? []} />
+            {has.cast ? (
+                <PersonBar
+                    title="Top Cast"
+                    actor={true}
+                    cast={movie?.credits?.cast ?? []}
+                />
+            ) : (
+                <h2 className="h6 text-rose-800 text-center py-2">
+                    No Cast Information!
+                </h2>
+            )}
+            {has.crew ? (
+                <PersonBar
+                    title="Top Crew"
+                    actor={false}
+                    crew={movie?.credits?.crew ?? []}
+                />
+            ) : (
+                <h2 className="h6 text-rose-800 text-center py-2">
+                    No Crew Information!
+                </h2>
+            )}
         </main>
     );
 }

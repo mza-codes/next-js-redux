@@ -6,7 +6,6 @@ import { ActorSmallPhoto } from "./ActorAvatar";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { CrewSmallPhoto } from "./CrewAvatar";
-import Link from "next/link";
 
 type Props = {
     cast?: Person[];
@@ -65,31 +64,28 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                 </button>
 
                 {actor
-                    ? cast?.slice(0, 25).map((person, i) => (
-                          <Link href={`/discover/persons/${person?.id}`}>
+                    ? cast
+                          ?.slice(0, 25)
+                          .map((person, i) => (
                               <ActorSmallPhoto
                                   person={person}
-                                  key={
-                                      person?.id * i - i ||
-                                      person?.id ||
-                                      person?.credit_id
-                                  }
+                                  key={person?.id}
                               />
-                          </Link>
-                      ))
-                    : crew?.slice(0, 25).map((person, i) => (
-                          <Link href={`/discover/persons/${person?.id}`}>
+                          ))
+                    : crew
+                          ?.slice(0, 25)
+                          .map((person, i) => (
                               <CrewSmallPhoto
                                   person={person}
-                                  key={
-                                      person?.id * i - i ||
-                                      person?.id ||
-                                      person?.credit_id
-                                  }
+                                  key={person?.id}
                               />
-                          </Link>
-                      ))}
+                          ))}
             </div>
         </div>
     );
 }
+
+/**
+ * @param { UNIQUE KEY }
+ * person?.id * i - i || person?.id || person?.credit_id
+ * */

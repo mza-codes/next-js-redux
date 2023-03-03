@@ -8,7 +8,6 @@ type Props = {
     };
 };
 export default async function GetActorSSR({ params }: Props) {
-    console.log("Params GETACTOR SSR", params);
     const { id } = params;
     try {
         const { data: person } = await TMDB.get(`/person/${id}`);
