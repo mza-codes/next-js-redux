@@ -13,8 +13,7 @@ type Props = {
 
 export default function MovieCard({ movie, classes }: Props) {
     const handleFade = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-        console.log("Error Loading Image: ", e);
-        e.currentTarget.classList.add("img-pacleholder");
+        // e.currentTarget.classList.add("img-pacleholder");
     };
 
     return (

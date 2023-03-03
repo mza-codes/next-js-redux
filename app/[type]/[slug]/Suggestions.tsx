@@ -23,8 +23,6 @@ export default function GenreSuggestions({
     const page = useRef(currentPage);
     const observer = useRef<any>();
 
-    console.log("PAGE VALUES: ", { currentPage, page });
-
     const lastItem = useCallback((node: any) => {
         if (loading) return; // loading state
         if (observer.current) observer.current?.disconnect();

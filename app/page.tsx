@@ -52,6 +52,7 @@ export default function Page() {
             <Link href="/get-data" className="bg-black text-white btn-1">
                 Browse Collections
             </Link>
+
         </section>
     );
 }

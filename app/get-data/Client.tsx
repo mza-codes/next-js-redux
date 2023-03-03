@@ -64,7 +64,7 @@ async function getMore(page: number) {
         const data = await response.json();
         return data;
     } catch (err: any) {
-        console.log("Error fetching,", err);
+        console.log("Error fetching:", page, err);
         return null;
     }
 }

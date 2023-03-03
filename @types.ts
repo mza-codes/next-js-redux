@@ -99,11 +99,55 @@ const detailedMovie = {
                 order: 0,
             },
         ],
+        crew: [
+            {
+                adult: false,
+                gender: 2,
+                id: 54420,
+                known_for_department: "Sound",
+                name: "David Sardy",
+                original_name: "David Sardy",
+                popularity: 0.98,
+                profile_path: null,
+                credit_id: "6391d12e18864b00eeb4ee5a",
+                department: "Sound",
+                job: "Original Music Composer",
+            },
+        ],
     },
 };
 
 type initalMovie = Partial<typeof movie>;
 type detailedMovie = Partial<typeof detailedMovie>;
+
+export type Crew = {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    credit_id: string;
+    department: string;
+    job: string;
+};
+
+export type Person = {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    cast_id: number;
+    character: string;
+    credit_id: string;
+    order: number;
+};
 
 export interface Movie extends initalMovie {
     first_air_date?: string;
