@@ -108,7 +108,7 @@ const detailedMovie = {
                 name: "David Sardy",
                 original_name: "David Sardy",
                 popularity: 0.98,
-                profile_path: null,
+                profile_path: "/cgoy7t5Ve075naBPcewZrc08qGw.jpg",
                 credit_id: "6391d12e18864b00eeb4ee5a",
                 department: "Sound",
                 job: "Original Music Composer",
