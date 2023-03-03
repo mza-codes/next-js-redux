@@ -105,6 +105,21 @@ const detailedMovie = {
 type initalMovie = Partial<typeof movie>;
 type detailedMovie = Partial<typeof detailedMovie>;
 
+export type Person = {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    cast_id: number;
+    character: string;
+    credit_id: string;
+    order: number;
+};
+
 export interface Movie extends initalMovie {
     first_air_date?: string;
     name?: string;

@@ -93,6 +93,16 @@
     );
 }
 
+/* PersonBar */
+/* .persons-container {
+    overflow: hidden;
+    overflow-x: scroll;
+} */
+
+.persons-container::-webkit-scrollbar {
+    display: none;
+}
+
 /* LOADER BAR */
 .bar {
     position: fixed;

@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { DetailedMovie } from "../../../@types";
 import LoadBar from "../../../components/LoadBar";
+import PersonBar from "../../../components/PersonsBar";
 import { POSTER_URL } from "../../../contstants";
 import Trailer from "./Trailer";
 
@@ -18,7 +18,6 @@ export default function ViewSingle({ movie, type }: Props) {
     const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(true);
     const loaded = useRef({ banner: false, poster: false });
-    const router = useRouter();
 
     function getGenres() {
         setLoading(true);
@@ -96,13 +95,12 @@ export default function ViewSingle({ movie, type }: Props) {
                         width={280}
                         height={400}
                         className="min-w-max add-bg h-full object-contain rounded-md portrait-poster"
-                        // loading="eager"
-                        // priority={true}
                         onLoadingComplete={() => handleComplete("poster")}
                     />
                 </section>
             </div>
             <Trailer movie={movie} open={[isOpen, setIsOpen]} />
+            <PersonBar cast={movie?.credits?.cast?.slice(0, 30) ?? []} />
         </main>
     );
 }
