@@ -1,4 +1,4 @@
-import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
+import axios, { AxiosPromise } from "axios";
 
 // if (!process.env.TMDB_API_KEY)
 //     throw new Error("VARIABLE: `TMDB_API_KEY` is Missing!");

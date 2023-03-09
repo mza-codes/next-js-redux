@@ -94,12 +94,12 @@
 }
 
 .icon {
-    @apply opacity-0 hover:opacity-100 cursor-pointer
+    @apply opacity-0 hover:opacity-100 cursor-pointer;
 }
 
 /* PersonBar */
-.actor-avatar{
-    @apply cursor-pointer hover:scale-105 active:scale-90 transition-all ease-linear
+.actor-avatar {
+    @apply cursor-pointer hover:scale-105 active:scale-90 transition-all ease-linear;
 }
 
 .persons-container::-webkit-scrollbar {
