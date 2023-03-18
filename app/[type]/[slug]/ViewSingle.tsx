@@ -103,7 +103,6 @@ export default function ViewSingle({ movie, type }: Props) {
                     />
                 </section>
             </div>
-            <Trailer movie={movie} open={[isOpen, setIsOpen]} />
             {has.cast ? (
                 <PersonBar
                     title="Top Cast"
@@ -126,6 +125,7 @@ export default function ViewSingle({ movie, type }: Props) {
                     No Crew Information!
                 </h2>
             )}
+            <Trailer movie={movie} open={[isOpen, setIsOpen]} />
         </main>
     );
 }
