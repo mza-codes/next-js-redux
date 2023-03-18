@@ -1,7 +1,11 @@
 import Error from "../../../../components/Error";
 import TMDB from "../../../../server/tmdb";
-import { genRandom } from "../../../../utils";
+import { genRandom, genTitle } from "../../../../utils";
 import GenreSuggestions from "../../../[type]/[slug]/Suggestions";
+
+export const metadata = {
+    title: genTitle("Discover")
+};
 
 export default async function GetGenresSSR({ params }: any) {
     let { genre, type } = params;

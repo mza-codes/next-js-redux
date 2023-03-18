@@ -1,7 +1,7 @@
 import Error from "../../../../components/Error";
 import TMDB from "../../../../server/tmdb";
+import { genTitle } from "../../../../utils";
 import DisplayData from "../../../get-data/Client";
-import GenreSuggestions from "../../../[type]/[slug]/Suggestions";
 import PersonPage from "./PersonPage";
 
 type Props = {
@@ -11,6 +11,11 @@ type Props = {
     // searchParams?: { [key: string]: string | string[] | undefined };
     searchParams?: any;
 };
+
+export const metadata = {
+    title: genTitle("Persons")
+};
+
 export default async function GetActorSSR({ params, searchParams }: Props) {
     const { page = 1 } = searchParams;
     const { id } = params;

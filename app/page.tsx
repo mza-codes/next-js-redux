@@ -4,7 +4,7 @@ import Link from "next/link";
 import { genTitle, verifyEnv } from "../utils";
 
 export const metadata: Metadata = {
-    title: genTitle("Home"),
+    title: genTitle("About"),
     authors: { name: "mza-codes", url: "https://mza-codes.github.io/" },
     keywords: ["Next.js", "React", "mflux", "mFlux"],
     description: "mFlux - TMDB Based Open Source Project",
@@ -52,7 +52,6 @@ export default function Page() {
             <Link href="/get-data" className="bg-black text-white btn-1">
                 Browse Collections
             </Link>
-
         </section>
     );
 }

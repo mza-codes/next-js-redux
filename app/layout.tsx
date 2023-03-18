@@ -1,4 +1,9 @@
 import "../styles/globals.css";
+import { genTitle } from "../utils";
+
+export const metadata = {
+    title: genTitle("Homepage"),
+};
 
 export default function RootLayout({
     children,

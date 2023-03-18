@@ -6,7 +6,7 @@ import { genRandom, genTitle } from "../../../utils";
 import GenreSuggestions from "./Suggestions";
 import ViewSingle from "./ViewSingle";
 
-export const metadata = { title: genTitle("Movie") };
+export const metadata = { title: genTitle("Info") };
 
 export default async function Page({ params }: any) {
     let { slug, type } = params;
