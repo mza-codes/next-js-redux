@@ -1,7 +1,4 @@
-import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
-
-// if (!process.env.TMDB_API_KEY)
-//     throw new Error("VARIABLE: `TMDB_API_KEY` is Missing!");
+import axios, { AxiosPromise } from "axios";
 
 const TMDB = axios.create({
     baseURL: `https://api.themoviedb.org/3`,
