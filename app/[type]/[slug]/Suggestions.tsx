@@ -9,10 +9,12 @@ type Props = {
     genre: number | string;
     type: "movie" | "tv";
     currentPage?: number;
+    title?: string;
 };
 
 export default function GenreSuggestions({
     suggestions,
+    title = "Similar Suggestions",
     genre,
     type,
     currentPage = 2,
@@ -29,7 +31,7 @@ export default function GenreSuggestions({
         observer.current = new IntersectionObserver(
             async (entries) => {
                 if (entries[0]?.isIntersecting) {
-                    if (true) {
+                    if (!loading) {
                         setLoading(true);
                         const values = await getMore({
                             genre,
@@ -53,7 +55,7 @@ export default function GenreSuggestions({
     }, []);
     return (
         <section className="col center pb-12">
-            <h2 className="h4 font-bold my-2">Similar Suggestions</h2>
+            <h2 className="h4 font-bold my-2">{title}</h2>
             <div className="row center">
                 {data?.map((movie, i) => {
                     if (data.length === i + 1) {

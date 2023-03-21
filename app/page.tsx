@@ -24,21 +24,23 @@ export default function Page() {
             />
 
             <article className="text-xl font-medium text-black ml-3 p-2 max-w-[800px]">
-                <b className="text-4xl text-[#fff]">mFlux</b> is built with TMDB
-                API, Using <strong>Next.JS 13 </strong>{" "}
+                <b className="text-5xl text-[#fff]">mFlux</b> is built with TMDB
+                API, Using <strong className="text-white">Next.JS 13 </strong>{" "}
                 <b className="text-sm">(Currently in beta).</b>
                 <br />
                 The role of this application is to provide latest movies & tv
                 shows information. As every applications first priority is
                 Perfomance, We are currently working towards new features. This
                 Application uses Server Side Rendering & Image Optimizations,
-                Thanks to <b className="text-lg">Next.JS</b> team. <br />
+                Thanks to <b className="text-lg text-white">
+                    Next.JS
+                </b> team. <br />
                 The UI is integrated with the power of <b>TailwindCSS.</b>
                 <br />
                 Meanwhile you can view the{" "}
                 <strong>
                     <a
-                        className="text-red-800 text-base hover:text-green-700"
+                        className="text-green-400 text-base hover:text-green-500"
                         href="https://mflux.netlify.app/"
                         target="_blank"
                         rel="noreferrer"

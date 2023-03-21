@@ -9,7 +9,7 @@ type Props = {
     currentPage?: number;
 };
 
-export default function DisplayData({ items,currentPage = 2 }: Props) {
+export default function DisplayData({ items, currentPage = 2 }: Props) {
     const [data, setData] = useState<any[] | null>(items);
     const [loading, setLoading] = useState(false);
     const page = useRef(currentPage);
@@ -58,8 +58,7 @@ export default function DisplayData({ items,currentPage = 2 }: Props) {
 async function getMore(page: number) {
     try {
         const response = await fetch(
-            `/api/v1/get-data?type=movie&cat=popular&page=${page}`,
-            { next: { revalidate: 60000 * 24 }, cache: "force-cache" }
+            `/api/v1/get-data?type=movie&cat=popular&page=${page}`
         );
         const data = await response.json();
         return data;
