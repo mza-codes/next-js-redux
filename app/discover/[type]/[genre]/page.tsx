@@ -3,9 +3,11 @@ import TMDB from "../../../../server/tmdb";
 import { genRandom, genTitle } from "../../../../utils";
 import GenreSuggestions from "../../../[type]/[slug]/Suggestions";
 
-export const metadata = {
-    title: genTitle("Discover"),
-};
+export async function generateMetadata({ params }: any) {
+    return {
+        title: genTitle(`Genres - ${params?.genre ?? 0}`),
+    };
+}
 
 export default async function GetGenresSSR({ params }: any) {
     let { genre, type } = params;

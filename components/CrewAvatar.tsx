@@ -13,7 +13,7 @@ export const CrewSmallPhoto = ({ person }: Props) => {
     return (
         <div className="mx-1 p-3">
             <div className="relative">
-                <Link href={`/discover/persons/${person?.id}`}>
+                <Link prefetch={false} href={`/discover/persons/${person?.id}`}>
                     <Image
                         width={150}
                         height={150}

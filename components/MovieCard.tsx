@@ -54,7 +54,7 @@ export default function MovieCard({ movie, classes }: Props) {
                         ? movie?.overview?.substring(0, 380) + "..."
                         : movie?.overview}{" "}
                     &nbsp;
-                    <Link
+                    <Link prefetch={false}
                         href={`/${movie?.type ?? "movie"}/${movie?.id}`}
                         className="text-black hover:text-rose-700 font-semibold"
                     >
