@@ -82,6 +82,7 @@ export default function ViewSingle({ movie, type }: Props) {
                         </button>
                         {movie?.genres?.map((genre) => (
                             <Link
+                                prefetch={false}
                                 onClick={getGenres}
                                 className="btn-2 text-xs "
                                 key={genre?.id}
