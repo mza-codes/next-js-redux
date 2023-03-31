@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import { genTitle } from "../utils";
 
 export const metadata = {
-    title: genTitle("Homepage"),
+    title: genTitle("Home"),
 };
 
 export default function RootLayout({

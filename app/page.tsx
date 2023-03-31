@@ -25,7 +25,7 @@ export default function Page() {
 
             <article className="text-xl font-medium text-black ml-3 p-2 max-w-[800px]">
                 <b className="text-5xl text-[#fff]">mFlux</b> is built with TMDB
-                API, Using <strong className="text-white">Next.JS 13 </strong>{" "}
+                API, Using <strong className="text-white">Next.JS 13</strong>{" "}
                 <b className="text-sm">(Currently in beta).</b>
                 <br />
                 The role of this application is to provide latest movies & tv
@@ -40,7 +40,7 @@ export default function Page() {
                 Meanwhile you can view the{" "}
                 <strong>
                     <a
-                        className="text-green-400 text-base hover:text-green-500"
+                        className="text-white hover:text-opacity-50"
                         href="https://mflux.netlify.app/"
                         target="_blank"
                         rel="noreferrer"

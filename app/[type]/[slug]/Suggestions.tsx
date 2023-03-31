@@ -55,7 +55,7 @@ export default function GenreSuggestions({
     }, []);
     return (
         <section className="col center pb-12">
-            <h2 className="h4 font-bold my-2">{title}</h2>
+            <h2 className="h4 font-bold mb-2 mt-4">{title}</h2>
             <div className="row center">
                 {data?.map((movie, i) => {
                     if (data.length === i + 1) {

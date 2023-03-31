@@ -83,7 +83,7 @@ export default function ViewSingle({ movie, type }: Props) {
                         {movie?.genres?.map((genre) => (
                             <Link
                                 onClick={getGenres}
-                                className="btn-2 text-sm"
+                                className="btn-2 text-xs "
                                 key={genre?.id}
                                 href={`/discover/${type}/${genre?.id ?? 28}`}
                             >

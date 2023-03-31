@@ -12,9 +12,11 @@ type Props = {
     searchParams?: any;
 };
 
-export const metadata = {
-    title: genTitle("Persons")
-};
+export async function generateMetadata({ params }: Props) {
+    return {
+        title: genTitle(`Person - ${params?.id ?? 0}`),
+    };
+}
 
 export default async function GetActorSSR({ params, searchParams }: Props) {
     const { page = 1 } = searchParams;
