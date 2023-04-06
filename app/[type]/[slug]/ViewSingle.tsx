@@ -60,17 +60,10 @@ export default function ViewSingle({ movie, type }: Props) {
             <div className="flex z-40 flex-col md:flex-row justify-between">
                 <section className="m-3 p-2 text-white text-left flex flex-col max-w-[90vw] gap-2">
                     <h1 className="h3 drop-shadow-lg">
-                        {movie?.title ||
-                            movie?.original_title ||
-                            movie?.original_name ||
-                            movie?.name}
+                        {movie?.title || movie?.original_title || movie?.original_name || movie?.name}
                     </h1>
-                    <h1 className="h4 drop-shadow-lg">
-                        {movie?.release_date || movie?.first_air_date}
-                    </h1>
-                    <p className="text-base overview drop-shadow-lg">
-                        {movie?.overview} &nbsp;
-                    </p>
+                    <h1 className="h4 drop-shadow-lg">{movie?.release_date || movie?.first_air_date}</h1>
+                    <p className="text-base overview drop-shadow-lg">{movie?.overview} &nbsp;</p>
 
                     <div className="flex flex-row flex-wrap items-center gap-2">
                         <button
@@ -94,37 +87,25 @@ export default function ViewSingle({ movie, type }: Props) {
                     </div>
                 </section>
                 <section className="m-3 p-2 items-center text-white md:items-end text-left flex flex-col gap-2 md:w-1/2">
-                    <Image
+                    <img
                         alt="Poster"
                         src={`${POSTER_URL}${movie?.poster_path}`}
                         width={280}
                         height={400}
                         className="min-w-max add-bg h-full object-contain rounded-md portrait-poster"
-                        onLoadingComplete={() => handleComplete("poster")}
+                        // onLoad={() => handleComplete("poster")}
                     />
                 </section>
             </div>
             {has.cast ? (
-                <PersonBar
-                    title="Top Cast"
-                    actor={true}
-                    cast={movie?.credits?.cast ?? []}
-                />
+                <PersonBar title="Top Cast" actor={true} cast={movie?.credits?.cast ?? []} />
             ) : (
-                <h2 className="h6 text-rose-800 text-center py-2">
-                    No Cast Information!
-                </h2>
+                <h2 className="h6 text-rose-800 text-center py-2">No Cast Information!</h2>
             )}
             {has.crew ? (
-                <PersonBar
-                    title="Top Crew"
-                    actor={false}
-                    crew={movie?.credits?.crew ?? []}
-                />
+                <PersonBar title="Top Crew" actor={false} crew={movie?.credits?.crew ?? []} />
             ) : (
-                <h2 className="h6 text-rose-800 text-center py-2">
-                    No Crew Information!
-                </h2>
+                <h2 className="h6 text-rose-800 text-center py-2">No Crew Information!</h2>
             )}
             <Trailer movie={movie} open={[isOpen, setIsOpen]} />
         </main>

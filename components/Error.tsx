@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
@@ -8,9 +7,8 @@ type Props = {
 export default function Error({ message }: Props) {
     return (
         <div className="flex flex-col items-center gap-3 rounded-md bg-red-50 bg-opacity-60 p-6 text-center">
-            <Image
+            <img
                 src="/mFlux_logo.png"
-                priority
                 width={150}
                 height={80}
                 alt="logo"
