@@ -2,7 +2,6 @@
 
 import { Crew } from "../@types";
 import { GoHeart } from "react-icons/go";
-import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
@@ -14,14 +13,12 @@ export const CrewSmallPhoto = ({ person }: Props) => {
         <div className="mx-1 p-3">
             <div className="relative">
                 <Link prefetch={false} href={`/discover/persons/${person?.id}`}>
-                    <Image
+                    <img
                         width={150}
                         height={150}
                         loading="lazy"
                         alt="person_avatar"
-                        onLoadingComplete={(e) =>
-                            e.classList.remove("load-pacleholder")
-                        }
+                        onLoad={({ currentTarget: e }) => e.classList.remove("load-pacleholder")}
                         src={
                             person?.profile_path
                                 ? `https://image.tmdb.org/t/p/w300${person?.profile_path}`
@@ -42,9 +39,7 @@ export const CrewSmallPhoto = ({ person }: Props) => {
                 {person?.name || person?.original_name}
             </span>
             <h4 className="text-gray-50 text-xs max-w-[100%]">
-                {person?.job ??
-                    person?.known_for_department ??
-                    person?.department}
+                {person?.job ?? person?.known_for_department ?? person?.department}
             </h4>
         </div>
     );
