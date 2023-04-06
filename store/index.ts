@@ -2,15 +2,15 @@
 
 import { toast } from "react-hot-toast";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { Crew, Movie, Person } from "../@types";
-// persist method
-
-type ID = string | number;
+// type ID = string | number;
 
 const initialState = {
-    movies: new Map<ID, Movie>(),
-    persons: new Map<ID, Person | Crew>(),
+    // movies: new Map<ID, Movie>(),
+    // persons: new Map<ID, Person | Crew>(),
+    movies: new Set<Movie>(),
+    persons: new Set<Person | Crew>(),
 };
 
 export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]]>(
@@ -18,32 +18,32 @@ export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]
         (set, get) => ({
             ...initialState,
             addMovie: (item) => {
-                get().movies.set(item.id, item);
+                get().movies.add(item);
                 toast.success("Movie Added To Favourites!");
             },
             removeMovie: (data) => {
-                get().movies.delete(data.id);
+                get().movies.delete(data);
                 toast.success("Movie Removed From Favourites!");
             },
             addPerson(person) {
-                get().persons.set(person.id, person);
+                get().persons.add(person);
                 toast.success("Person Added To Favourites!");
             },
             removePerson(person) {
-                get().persons.delete(person.id);
+                get().persons.delete(person);
                 toast.success("Person Removed From Favourites!");
             },
             resetPersons() {
                 set((s) => ({
                     ...s,
-                    persons: new Map(),
+                    persons: new Set(),
                 }));
                 toast.success("Cleared Favourited Movies!");
             },
             resetMovies() {
                 set((s) => ({
                     ...s,
-                    movies: new Map(),
+                    movies: new Set(),
                 }));
                 toast.success("Cleared Favourited Persons!");
             },
@@ -54,7 +54,7 @@ export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]
         }),
         {
             name: "mflux-cache", // name of item in the storage (must be unique)
-            getStorage: () => localStorage, // (optional) by default the 'localStorage' is used
+            storage: createJSONStorage(() => localStorage),
         }
     )
 );
