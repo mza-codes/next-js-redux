@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SyntheticEvent } from "react";
 import { Movie } from "../@types";
 import { w500 } from "../contstants";
+import { useLocalStore } from "../store";
 
 type Props = {
     movie: Movie;
@@ -12,9 +13,11 @@ type Props = {
 };
 
 export default function MovieCard({ movie, classes }: Props) {
+    const addFavourite = useLocalStore((s) => s.addMovie);
     const handleError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
         // e.currentTarget.classList.add("img-pacleholder");
         e.currentTarget.src = "/404.jpg";
+        e.currentTarget.classList.remove(`load-pacleholder`);
     };
 
     return (
