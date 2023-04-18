@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { DetailedMovie } from "../../../@types";
 import LoadBar from "../../../components/LoadBar";
 import PersonBar from "../../../components/PersonsBar";
@@ -18,10 +18,13 @@ export default function ViewSingle({ movie, type }: Props) {
     const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(true);
     const loaded = useRef({ banner: false, poster: false });
-    const has = {
-        crew: movie?.credits?.crew?.length ?? 0 >= 1,
-        cast: movie?.credits?.cast?.length ?? 0 >= 1,
-    };
+    const has = useMemo(
+        () => ({
+            crew: movie?.credits?.crew?.length ?? 0 >= 1,
+            cast: movie?.credits?.cast?.length ?? 0 >= 1,
+        }),
+        [movie?.credits]
+    );
 
     function getGenres() {
         setLoading(true);

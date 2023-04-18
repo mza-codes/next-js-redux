@@ -22,7 +22,7 @@ export default function MovieCard({ movie, classes }: Props) {
 
     return (
         <div
-            className={`max-h-screen max-w-xs m-2 flex flex-col overflow-ellipsis p-2 gap-2 items-start border-0 border-black relative ${classes}`}
+            className={`max-h-screen max-w-xs m-2 min-w-[200px] sm:min-w-[280px] flex flex-col overflow-ellipsis p-2 gap-2 items-start border-0 border-black relative ${classes}`}
         >
             <img
                 alt="Movie_Poster"
