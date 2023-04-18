@@ -4,13 +4,10 @@ import { toast } from "react-hot-toast";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { Crew, Movie, Person } from "../@types";
-// type ID = string | number;
 
 const initialState = {
-    // movies: new Map<ID, Movie>(),
-    // persons: new Map<ID, Person | Crew>(),
-    movies: new Set<Movie>(),
-    persons: new Set<Person | Crew>(),
+    movies: [],
+    persons: [],
 };
 
 export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]]>(
@@ -18,32 +15,55 @@ export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]
         (set, get) => ({
             ...initialState,
             addMovie: (item) => {
-                get().movies.add(item);
+                let newArray: Movie[] = [];
+                if (get().movies.length > 0) {
+                    newArray = get().movies.filter((m) => m.id !== item.id);
+                }
+                newArray.push(item);
+
+                set((s) => ({
+                    ...s,
+                    movies: newArray,
+                }));
                 toast.success("Movie Added To Favourites!");
             },
             removeMovie: (data) => {
-                get().movies.delete(data);
+                const newArray = get().movies.filter((m) => m.id !== data.id);
+                set((s) => ({
+                    ...s,
+                    movies: newArray,
+                }));
                 toast.success("Movie Removed From Favourites!");
             },
             addPerson(person) {
-                get().persons.add(person);
+                let newArray: Person[] | Crew[] = [];
+                if (get().persons.length > 0) {
+                    // @ts-ignore
+                    newArray = get().persons.filter((p) => p.id !== person.id) ?? [];
+                }
+                // @ts-ignore
+                newArray.push(person);
+
+                set((s) => ({ ...s, persons: newArray }));
                 toast.success("Person Added To Favourites!");
             },
             removePerson(person) {
-                get().persons.delete(person);
+                // @ts-ignore
+                const newArray = get().persons.filter((p) => p.id !== person.id) ?? [];
+                set((s) => ({ ...s, persons: newArray }));
                 toast.success("Person Removed From Favourites!");
             },
             resetPersons() {
                 set((s) => ({
                     ...s,
-                    persons: new Set(),
+                    persons: [],
                 }));
                 toast.success("Cleared Favourited Movies!");
             },
             resetMovies() {
                 set((s) => ({
                     ...s,
-                    movies: new Set(),
+                    movies: [],
                 }));
                 toast.success("Cleared Favourited Persons!");
             },
@@ -59,7 +79,10 @@ export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]
     )
 );
 
-type store = typeof initialState;
+type store = {
+    movies: Movie[];
+    persons: Person[] | Crew[];
+};
 
 interface CacheStore extends store {
     resetState: () => void;

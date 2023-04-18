@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { DetailedMovie } from "../../../@types";
 import LoadBar from "../../../components/LoadBar";
 import PersonBar from "../../../components/PersonsBar";
@@ -17,7 +17,7 @@ type Props = {
 export default function ViewSingle({ movie, type }: Props) {
     const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(true);
-    const loaded = useRef({ banner: false, poster: false });
+    // const loaded = useRef({ banner: false, poster: false });
     const has = useMemo(
         () => ({
             crew: movie?.credits?.crew?.length ?? 0 >= 1,
@@ -25,20 +25,6 @@ export default function ViewSingle({ movie, type }: Props) {
         }),
         [movie?.credits]
     );
-
-    function getGenres() {
-        setLoading(true);
-        // router.push(`/discover/${type}/${id ?? 28}`);
-        return;
-    }
-
-    function handleComplete(item: "banner" | "poster") {
-        loaded.current[item] = true;
-        //  const { banner, poster } = loaded.current;
-        //  if (banner) {
-        //      setLoading(false);
-        // }
-    }
 
     return (
         <main className="min-h-screen w-full h-auto">
@@ -79,8 +65,8 @@ export default function ViewSingle({ movie, type }: Props) {
                         {movie?.genres?.map((genre) => (
                             <Link
                                 prefetch={false}
-                                onClick={getGenres}
-                                className="btn-2 text-xs "
+                                onClick={() => setLoading(true)}
+                                className="genre-button btn-hover "
                                 key={genre?.id}
                                 href={`/discover/${type}/${genre?.id ?? 28}`}
                             >

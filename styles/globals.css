@@ -19,12 +19,22 @@
     /* from-emerald-800 to-fuchsia-700 */
 }
 
+.genre-button {
+    @apply py-2 px-4 bg-gradient-to-br from-pink-300 text-white to-red-900 text-xs rounded-lg hover:from-blue-500 hover:to-green-500;
+}
+
+@layer {
+    .btn-hover {
+        @apply active:scale-90 font-medium transition-all duration-300 ease-out;
+    }
+}
+
 .img-pacleholder {
     @apply bg-black bg-opacity-40 animate-pulse font-bold text-white;
 }
 
 .load-pacleholder {
-    @apply bg-black bg-opacity-40 bg-opacity-40 animate-pulse;
+    @apply bg-black bg-opacity-40 animate-pulse;
 }
 
 .portrait-poster {
