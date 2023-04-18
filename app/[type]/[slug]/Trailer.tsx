@@ -46,7 +46,7 @@ export default function Trailer({ movie, open }: Props) {
                 </select>
                 <button
                     onClick={handleClose}
-                    className="absolute text-rose-800 text-4xl right-2 btn-1 "
+                    className="absolute text-red-800 text-4xl right-2 btn-1 hover:text-red-600"
                     style={{ borderRadius: "50%" }}
                 >
                     <AiFillCloseSquare />

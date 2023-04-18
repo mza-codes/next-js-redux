@@ -4,16 +4,14 @@ import { Person } from "../@types";
 import { GoHeart } from "react-icons/go";
 import Link from "next/link";
 import { storeData } from "../utils";
+import { useLocalStore } from "../store";
 
 type Props = {
     person: Person;
 };
 
 export const ActorSmallPhoto = ({ person }: Props) => {
-    const addPerson = () => {
-        // storeData(localStorage, "persons", JSON.stringify(person));
-        return;
-    };
+    const addPerson = useLocalStore((s) => s.addPerson);
     return (
         <div className="mx-1 p-3">
             <div className="relative">
@@ -35,7 +33,7 @@ export const ActorSmallPhoto = ({ person }: Props) => {
                 <div
                     className="icon text-rose-600 hover:text-rose-500 z-[104] opacity-0 hover:opacity-100 cursor-pointer absolute right-1 top-1"
                     title="Add To Favourites"
-                    onClick={addPerson}
+                    onClick={() => addPerson(person)}
                 >
                     <GoHeart />
                 </div>

@@ -6,6 +6,7 @@ import { ActorSmallPhoto } from "./ActorAvatar";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { CrewSmallPhoto } from "./CrewAvatar";
+import { genRandom } from "../utils";
 
 type Props = {
     cast?: Person[];
@@ -14,30 +15,28 @@ type Props = {
     title: string;
 };
 
+const handleScroll = (param: "next" | "prev", ref: RefObject<HTMLDivElement>) => {
+    if (!ref.current) return false;
+    if (param === "next") {
+        ref.current.scrollTo({
+            left: ref.current.scrollLeft + 200,
+            behavior: "smooth",
+        });
+        return;
+    } else if (param === "prev") {
+        ref.current.scrollTo({
+            left: ref.current.scrollLeft - 200,
+            behavior: "smooth",
+        });
+        return;
+    }
+};
+
 export default function PersonBar({ cast, crew, actor = false, title }: Props) {
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    const handleScroll = (
-        param: "next" | "prev",
-        ref: RefObject<HTMLDivElement>
-    ) => {
-        if (!ref.current) return false;
-        if (param === "next") {
-            ref.current.scrollTo({
-                left: ref.current.scrollLeft + 200,
-                behavior: "smooth",
-            });
-            return;
-        } else if (param === "prev") {
-            ref.current.scrollTo({
-                left: ref.current.scrollLeft - 200,
-                behavior: "smooth",
-            });
-            return;
-        }
-    };
     return (
-        <div className="max-w-[98vw] mx-auto px-3 relative persons-container">
+        <div className="max-w-[98vw] mx-auto px-3 relative persons-container0">
             <h2 className="font-righteous text-2xl py-2 ml-3 font-bold">
                 {title} &nbsp;
                 <span className="py-1 px-2 bg-green-200 font-black font-poppins text-sm rounded-md">
@@ -46,7 +45,7 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
             </h2>
             <div
                 ref={scrollRef}
-                className="w-full h-auto flex overflow-hidden persons-container"
+                className="w-full h-auto flex overflow-hidden persons-container overflow-x-scroll"
             >
                 <button
                     onClick={() => handleScroll("prev", scrollRef)}
@@ -67,25 +66,14 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                     ? cast
                           ?.slice(0, 25)
                           .map((person, i) => (
-                              <ActorSmallPhoto
-                                  person={person}
-                                  key={person?.id}
-                              />
+                              <ActorSmallPhoto person={person} key={person?.id ?? i + genRandom(50) - 1} />
                           ))
                     : crew
                           ?.slice(0, 25)
                           .map((person, i) => (
-                              <CrewSmallPhoto
-                                  person={person}
-                                  key={person?.id}
-                              />
+                              <CrewSmallPhoto person={person} key={person?.id ?? i + genRandom(50) - 1} />
                           ))}
             </div>
         </div>
     );
 }
-
-/**
- * @param { UNIQUE KEY }
- * person?.id * i - i || person?.id || person?.credit_id
- * */
