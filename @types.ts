@@ -197,6 +197,7 @@ export type Person = {
 
 export interface Movie extends initalMovie {
     first_air_date?: string;
+    id:number;
     name?: string;
     original_name?: string;
     type?: string;

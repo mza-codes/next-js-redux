@@ -89,11 +89,7 @@
     bottom: 0px;
     width: 100%;
     height: 30%;
-    background: linear-gradient(
-        to bottom,
-        transparent 10%,
-        var(--theme-color) 80%
-    );
+    background: linear-gradient(to bottom, transparent 10%, var(--theme-color) 80%);
 }
 
 .icon {
@@ -107,6 +103,10 @@
 
 .persons-container::-webkit-scrollbar {
     display: none;
+}
+
+.persons-container {
+    scroll-padding: 1rem;
 }
 
 /* LOADER BAR */
