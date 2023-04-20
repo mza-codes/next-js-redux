@@ -9,14 +9,37 @@
 
 :root {
     --theme-color: #00000070;
-    --header-height: 0px;
+    --header-height: 80px;
     --test: #ff2f28;
 }
 
+body {
+    @apply bg-gradient-to-b from-orange-300 to-yellow-600;
+}
+
+.app-header {
+    height: var(--header-height);
+    width: 100%;
+    position: sticky;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    @apply shadow-md gap-2;
+}
+
+.app-header > div {
+    @apply inline-flex flex-row gap-2 items-center;
+}
+
 .app-page {
-    @apply bg-gradient-to-b from-orange-300 to-yellow-600 w-full flex flex-col items-center justify-center;
+    @apply w-full flex flex-col items-center justify-center;
     min-height: calc(100vh - var(--header-height));
     /* from-emerald-800 to-fuchsia-700 */
+}
+
+.header-link {
+    @apply rounded-t-sm border-b-2 bg-black/10 p-1 py-2 px-4 font-semibold text-black hover:bg-black/40 hover:text-white text-sm;
 }
 
 .genre-button {
