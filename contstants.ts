@@ -4,20 +4,22 @@ export const w500 = "https://image.tmdb.org/t/p/w500";
 export const w780 = "https://image.tmdb.org/t/p/w780";
 export const POSTER_URL = "https://image.tmdb.org/t/p/original";
 
-export const romance = `/discover/movie?with_genres=10749`
-export const tvPopular = `/tv/popular?language=en-US&page=1`
-export const documentaries = `/discover/movie?with_genres=99`
-export const horror = `/discover/movie?with_genres=27`
-export const trending = `/trending/all/week?language=en-US`
-export const comedy = `/discover/movie?with_genres=35`
-export const action = `/discover/movie?with_genres=28`
-export const topRated = `/movie/top_rated?with_genres=10751&page=1`
-export const upcoming = `/movie/upcoming?language=en-US&page=1`
-export const trending2 = `/trending/all/day?language=en-US`
-export const action2 = `/discover/movie?with_genres=28`
-export const originals = `/discover/tv?with_networks=213`
-export const comedy2 = `/discover/movie?with_genres=35`
-export const horror2 = `/discover/movie?with_genres=27`
-export const romance2 = `/discover/movie?with_genres=10749`
-export const family = `/discover/movie?with_genres=10751`
-export const popular = `/discover/movie?language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=free`
+export const populate = {
+    romance: `/discover/movie?with_genres=10749`,
+    tvPopular: `/tv/popular?language=en-US&page=1`,
+    documentaries: `/discover/movie?with_genres=99`,
+    horror: `/discover/movie?with_genres=27`,
+    trending: `/trending/all/week?language=en-US`,
+    comedy: `/discover/movie?with_genres=35`,
+    action: `/discover/movie?with_genres=28`,
+    topRated: `/movie/top_rated?with_genres=10751&page=1`,
+    upcoming: `/movie/upcoming?language=en-US&page=1`,
+    trending2: `/trending/all/day?language=en-US`,
+    action2: `/discover/movie?with_genres=28`,
+    originals: `/discover/tv?with_networks=213`,
+    comedy2: `/discover/movie?with_genres=35`,
+    horror2: `/discover/movie?with_genres=27`,
+    romance2: `/discover/movie?with_genres=10749`,
+    family: `/discover/movie?with_genres=10751`,
+    popular: `/discover/movie?language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=free`,
+};
