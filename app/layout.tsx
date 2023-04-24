@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import UserModal from "../components/modals/UserModal";
 import Toast from "../components/Toast";
 import "../styles/globals.css";
 import { genTitle } from "../utils";
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Toast />
                 <Header />
                 <main className="app-page">{children}</main>
+                <UserModal />
             </body>
         </html>
     );

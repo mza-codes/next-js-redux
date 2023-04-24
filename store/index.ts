@@ -10,6 +10,8 @@ const initialState = {
     persons: [],
 };
 
+export const storeKey = "mflux-cache";
+
 export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]]>(
     persist(
         (set, get) => ({
@@ -69,11 +71,11 @@ export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]
             },
             resetState: () => {
                 set(() => ({ ...initialState }));
-                toast.success("CacheStorage Cleared Success!");
+                toast.success("CacheStorage Cleared Successfully!");
             },
         }),
         {
-            name: "mflux-cache", // name of item in the storage (must be unique)
+            name: storeKey, // name of item in the storage (must be unique)
             storage: createJSONStorage(() => localStorage),
         }
     )

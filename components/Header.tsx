@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Righteous } from "next/font/google";
 import { usePathname } from "next/navigation";
+import { FaUserAlt } from "react-icons/fa";
+import useUserModal from "../hooks/useUserModal";
 
 const righteous = Righteous({
     display: "swap",
@@ -19,6 +21,7 @@ const links = [
 
 export default function Header() {
     const path = usePathname();
+    const userModal = useUserModal();
 
     return (
         <header className="app-header px-4">
@@ -42,17 +45,15 @@ export default function Header() {
                     </Link>
                 ))}
             </div>
-            {/* <div className="right-section">
-                {links.map((link) => (
-                    <Link
-                        key={link.name}
-                        className={`header-link ${path === link.path ? "border-green-600" : ""}`}
-                        href={link.path}
-                    >
-                        {link.name}
-                    </Link>
-                ))}
-            </div> */}
+            <div className="right-section">
+                <button
+                    onClick={userModal.onOpen}
+                    type="button"
+                    className="text-slate-800 hover:text-slate-800/70"
+                >
+                    <FaUserAlt size={24} />
+                </button>
+            </div>
         </header>
     );
 }
