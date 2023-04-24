@@ -45,7 +45,7 @@ export default function Page() {
             </article>
 
             <Link href="/get-data" className="bg-black text-white btn-1">
-                Browse Collections
+                Popular Collections
             </Link>
             <Link href="/home" className="bg-black text-white btn-1">
                 Home
