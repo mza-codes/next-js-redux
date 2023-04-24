@@ -1,3 +1,4 @@
+import ConfirmDialog from "../components/ConfirmDialog";
 import Header from "../components/Header";
 import UserModal from "../components/modals/UserModal";
 import Toast from "../components/Toast";
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Header />
                 <main className="app-page">{children}</main>
                 <UserModal />
+                {/* <ConfirmDialog /> */}
             </body>
         </html>
     );

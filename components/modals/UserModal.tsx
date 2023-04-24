@@ -1,21 +1,15 @@
 "use client";
 
-import { Nunito } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
 import { MdClose } from "react-icons/md";
 import useUserModal from "../../hooks/useUserModal";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocalStore } from "../../store";
+import { useRef, useState } from "react";
+import { nunito } from "../../fonts";
+import useConfirmDialog from "../../hooks/useConfirmDialog";
+import ConfirmDialog from "../ConfirmDialog";
 
 type Props = {};
-
-const nunito = Nunito({
-    display: "swap",
-    preload: true,
-    subsets: ["latin"],
-    weight: ["400", "400", "500", "600", "700", "800", "900"],
-    variable: "--nunito",
-});
 
 const nameKey = "mflux-name";
 const dummyName = "Kosinski";
@@ -24,14 +18,23 @@ export default function UserModal({}: Props) {
     const nameRef = useRef<HTMLInputElement | null>(null);
     const userModal = useUserModal();
     const store = useLocalStore();
+    const confirmDialog = useConfirmDialog();
+    const [dialogProps, setDialogProps] = useState({
+        message: "Changes may not be saved, Continue ?",
+        action: userModal.onClose,
+    });
 
     const handleClose = () => {
-        localStorage.setItem(nameKey, nameRef.current?.value?.slice(0, 10) ?? dummyName);
-        userModal.onClose();
+        setDialogProps({
+            message: "Changes may not be saved, Continue ?",
+            action: userModal.onClose,
+        });
+        localStorage.setItem(nameKey, nameRef.current?.value?.slice(0, 12) ?? dummyName);
+        confirmDialog.onOpen();
     };
 
     return (
-        <AnimatePresence>
+        <AnimatePresence key={"userModal"}>
             {userModal.isOpen ? (
                 <section
                     className={`fixed bg-gray-800/40 inset-0 col items-center justify-center ${nunito.className}`}
@@ -64,23 +67,28 @@ export default function UserModal({}: Props) {
                         </button>
                         {/* MainBody */}
                         <span>
-                            Favourited Items:
-                            &nbsp;<b>{store.movies.length}</b>
+                            Favourited Items: &nbsp;<b>{store.movies.length}</b>
                         </span>
                         <span>
-                            Favourited Persons:
-                            &nbsp;<b>{store.persons.length}</b>
+                            Favourited Persons: &nbsp;<b>{store.persons.length}</b>
                         </span>
                         <button
                             type="button"
                             className="bg-red-600 hover:bg-red-700/80 p-2 text-white w-full rounded-lg font-semibold"
-                            onClick={store.resetState}
+                            onClick={() => {
+                                setDialogProps({
+                                    message: "Are You Sure ?",
+                                    action: store.resetState,
+                                });
+                                confirmDialog.onOpen();
+                            }}
                         >
                             Clear Data
                         </button>
                     </motion.main>
                 </section>
             ) : null}
+            <ConfirmDialog message={dialogProps.message} key={"alert-dialog"} action={dialogProps.action} />
         </AnimatePresence>
     );
 }
