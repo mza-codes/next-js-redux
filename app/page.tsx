@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Page() {
     verifyEnv();
     return (
-        <section className="flex gap-2 items-center flex-col">
+        <section className="flex flex-col gap-2 items-center">
             <img
                 className="bg-black py-2 px-4 rounded-lg bg-opacity-60 hover:bg-opacity-50"
                 alt="mFlux_logo"
@@ -45,7 +45,10 @@ export default function Page() {
             </article>
 
             <Link href="/get-data" className="bg-black text-white btn-1">
-                Browse Collections
+                Popular Collections
+            </Link>
+            <Link href="/home" className="bg-black text-white btn-1">
+                Home
             </Link>
         </section>
     );
