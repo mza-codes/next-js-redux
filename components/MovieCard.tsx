@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { SyntheticEvent } from "react";
+import { MdOpenInNew } from "react-icons/md";
 import { Movie } from "../@types";
 import { w500 } from "../contstants";
 import { useLocalStore } from "../store";
@@ -53,9 +53,9 @@ export default function MovieCard({ movie, classes }: Props) {
                     <Link
                         prefetch={false}
                         href={`/${movie?.type ?? "movie"}/${movie?.id}`}
-                        className="text-black hover:text-rose-700 font-semibold"
+                        className="text-white hover:text-black absolute shadow-lg"
                     >
-                        View
+                        <MdOpenInNew size={20} />
                     </Link>
                 </p>
             </div>
