@@ -15,7 +15,7 @@ export default async function HomePage() {
         return (
             <section className="flex gap-2 items-start py-6 flex-col">
                 {[...Array(4)].map((_, i) => (
-                    <Row key={i} movies={data?.results as Movie[]} title={`Trending Movies ${new Date().getFullYear()}`} />
+                    <Row key={i} movies={data?.results as Movie[]} title={`Trending Movies`} />
                 ))}
             </section>
         );
