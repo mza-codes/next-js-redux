@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-    /* border: 0.5px solid black; */
+    /* border: 0.5px solid #fc5692; */
     outline: none;
 }
 

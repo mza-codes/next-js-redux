@@ -22,11 +22,11 @@ export default function MovieCard({ movie, classes }: Props) {
 
     return (
         <div
-            className={`max-h-screen max-w-xs m-2 min-w-[200px] sm:min-w-[280px] flex flex-col overflow-ellipsis p-2 gap-2 items-start border-0 border-black relative ${classes}`}
+            className={`max-h-screen max-w-xs m-2 min-w-[180px] sm:min-w-[280px] flex flex-col overflow-ellipsis p-1 gap-2 items-start relative ${classes}`}
         >
             <img
                 alt="Movie_Poster"
-                className={`load-pacleholder min-h-[400px] rounded-md object-cover min-w-[280px] shadow-lg hover:shadow-md`}
+                className={`load-pacleholder min-h-[400px] rounded-md object-cover min-w-[inherit] shadow-lg hover:shadow-md`}
                 src={
                     movie?.poster_path
                         ? w500 + movie?.poster_path
