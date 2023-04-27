@@ -4,8 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
 import useUserModal from "../hooks/useUserModal";
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import Search from "./Search";
+import { MdMenu } from "react-icons/md";
+import useConfirmDialog from "../hooks/useConfirmDialog";
 
 const links = [
     { name: "Home", path: "/home" },
@@ -16,7 +18,8 @@ const links = [
 export default function Header() {
     const path = usePathname();
     const userModal = useUserModal();
-    const searchRef = useRef(null);
+    const dialog = useConfirmDialog();
+    const { setDialogProps } = dialog;
 
     const userModalBtn = useMemo(
         () => (
@@ -62,6 +65,15 @@ export default function Header() {
                 {/* <div className="block md:hidden">
                     <Search />
                 </div> */}
+                <button
+                    type="button"
+                    onClick={() => {
+                        setDialogProps({ message: "This is Test?", action: dialog.onClose });
+                        dialog.onOpen();
+                    }}
+                >
+                    <MdMenu size={24} />
+                </button>
 
                 {userModalBtn}
             </div>

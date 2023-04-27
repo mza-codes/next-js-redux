@@ -81,7 +81,7 @@ export default function ViewSingle({ movie, type }: Props) {
                         src={`${POSTER_URL}${movie?.poster_path}`}
                         width={280}
                         height={400}
-                        className="min-w-max add-bg h-full object-contain rounded-md portrait-poster"
+                        className="min-w-[200px] add-bg h-full object-contain rounded-md portrait-poster"
                         // onLoad={() => handleComplete("poster")}
                     />
                 </section>

@@ -7,7 +7,6 @@ import { useLocalStore } from "../../store";
 import { useRef, useState } from "react";
 import { nunito } from "../../fonts";
 import useConfirmDialog from "../../hooks/useConfirmDialog";
-import ConfirmDialog from "../ConfirmDialog";
 
 type Props = {};
 
@@ -19,10 +18,8 @@ export default function UserModal({}: Props) {
     const userModal = useUserModal();
     const store = useLocalStore();
     const confirmDialog = useConfirmDialog();
-    const [dialogProps, setDialogProps] = useState({
-        message: "Changes may not be saved, Continue ?",
-        action: userModal.onClose,
-    });
+
+    const { setDialogProps } = confirmDialog;
 
     const handleClose = () => {
         setDialogProps({
@@ -77,7 +74,7 @@ export default function UserModal({}: Props) {
                             className="bg-red-600 hover:bg-red-700/80 p-2 text-white w-full rounded-lg font-semibold"
                             onClick={() => {
                                 setDialogProps({
-                                    message: "Are You Sure ?",
+                                    message: "Are You Sure, This will delete all of your favourited data ?",
                                     action: store.resetState,
                                 });
                                 confirmDialog.onOpen();
@@ -88,7 +85,6 @@ export default function UserModal({}: Props) {
                     </motion.main>
                 </section>
             ) : null}
-            <ConfirmDialog message={dialogProps.message} key={"alert-dialog"} action={dialogProps.action} />
         </AnimatePresence>
     );
 }
