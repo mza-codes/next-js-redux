@@ -1,5 +1,6 @@
 import { HttpStatusCode } from "axios";
 import { NextApiResponse } from "next/types";
+import { RefObject } from "react";
 
 export const genTitle = (prefix: string) => `${prefix} | mFlux`;
 
@@ -50,3 +51,20 @@ export function storeData(store: Storage, field: "movies" | "persons", value: an
     store.setItem(storeVars.movies, value);
     return true;
 }
+
+export const handleScroll = (param: "next" | "prev", ref: RefObject<HTMLElement>) => {
+    if (!ref.current) return false;
+    if (param === "next") {
+        ref.current.scrollTo({
+            left: ref.current.scrollLeft + 200,
+            behavior: "smooth",
+        });
+        return;
+    } else if (param === "prev") {
+        ref.current.scrollTo({
+            left: ref.current.scrollLeft - 200,
+            behavior: "smooth",
+        });
+        return;
+    }
+};

@@ -6,30 +6,13 @@ import { ActorSmallPhoto } from "./ActorAvatar";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { CrewSmallPhoto } from "./CrewAvatar";
-import { genRandom } from "../utils";
+import { genRandom, handleScroll } from "../utils";
 
 type Props = {
     cast?: Person[];
     crew?: Crew[];
     actor?: boolean;
     title: string;
-};
-
-const handleScroll = (param: "next" | "prev", ref: RefObject<HTMLDivElement>) => {
-    if (!ref.current) return false;
-    if (param === "next") {
-        ref.current.scrollTo({
-            left: ref.current.scrollLeft + 200,
-            behavior: "smooth",
-        });
-        return;
-    } else if (param === "prev") {
-        ref.current.scrollTo({
-            left: ref.current.scrollLeft - 200,
-            behavior: "smooth",
-        });
-        return;
-    }
 };
 
 export default function PersonBar({ cast, crew, actor = false, title }: Props) {

@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { BiSearchAlt } from "react-icons/bi";
 import { usePathname } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
 import useUserModal from "../hooks/useUserModal";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
+import Search from "./Search";
 
 const links = [
     { name: "Home", path: "/home" },
@@ -17,6 +17,19 @@ export default function Header() {
     const path = usePathname();
     const userModal = useUserModal();
     const searchRef = useRef(null);
+
+    const userModalBtn = useMemo(
+        () => (
+            <button
+                onClick={userModal.onOpen}
+                type="button"
+                className="text-slate-800 hover:text-slate-800/70"
+            >
+                <FaUserAlt size={24} />
+            </button>
+        ),
+        []
+    );
 
     return (
         <header className="app-header px-4">
@@ -30,46 +43,27 @@ export default function Header() {
                         height={80}
                     />
                 </Link>
-                {links.map((link) => (
-                    <Link
-                        key={link.name}
-                        className={`header-link ${path === link.path ? "border-green-600" : ""}`}
-                        href={link.path}
-                    >
-                        {link.name}
-                    </Link>
-                ))}
+                <div className="hidden md:flex items-center gap-2">
+                    {links.map((link) => (
+                        <Link
+                            key={link.name}
+                            className={`header-link ${path === link.path ? "border-green-600" : ""}`}
+                            href={link.path}
+                        >
+                            {link.name}
+                        </Link>
+                    ))}
+                </div>
             </div>
             <div className="right-section space-x-2">
+                <div className="hidden md:flex items-center gap-2 flex-wrap">
+                    <Search />
+                </div>
+                {/* <div className="block md:hidden">
+                    <Search />
+                </div> */}
 
-                {/* <form action="/search" className="relative inline-flex gap-2">
-                    <input
-                        name="q"
-                        className={`py-1 pr-12 pl-4 rounded-tr-md rounded-tl-md max-w-[200px] border-green-500 invalid:border-red-500 border-b-[3.0px] bg-black/40 text-white`}
-                        required
-                        pattern="^[a-zA-Z0-9][a-zA-Z0-9 ]*$"
-                        minLength={2}
-                        type="text"
-                        ref={searchRef}
-                        placeholder="Search.."
-                        maxLength={50}
-                    />
-                    <input type="hidden" value={1} name="page" />
-                    <button
-                        type="submit"
-                        className="text-white opacity-30 hover:opacity-100 my-1 rounded-xl absolute right-2"
-                    >
-                        <BiSearchAlt size={22} />
-                    </button>
-                </form> */}
-                
-                <button
-                    onClick={userModal.onOpen}
-                    type="button"
-                    className="text-slate-800 hover:text-slate-800/70"
-                >
-                    <FaUserAlt size={24} />
-                </button>
+                {userModalBtn}
             </div>
         </header>
     );

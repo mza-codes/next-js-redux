@@ -44,7 +44,7 @@ export default function UserModal({}: Props) {
                         whileInView={{ opacity: 1, translateY: 0 }}
                         exit={{ opacity: 0, translateY: "-100%" }}
                         transition={{ duration: 0.36 }}
-                        className="bg-white px-6 py-8 rounded-md shadow-md flex flex-col gap-4 min-w-full sm:min-w-[440px] min-h-screen sm:min-h-[80vh] relative"
+                        className="bg-white px-6 py-8 sm:rounded-md shadow-md flex flex-col gap-4 min-w-full sm:min-w-[440px] min-h-[100dvh] sm:min-h-[80vh] relative"
                     >
                         <h2 className="text-2xl font-semibold">
                             Welcome{" "}
