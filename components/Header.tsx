@@ -39,11 +39,9 @@ export default function Header() {
             <div className="left-section">
                 <Link href="/">
                     <img
-                        className="object-cover p-4"
+                        className="object-cover p-4 max-w-[120px] max-h-14  sm:max-h-20"
                         alt="mFlux_logo"
                         src="/mFlux_logo.png"
-                        width={150}
-                        height={80}
                     />
                 </Link>
                 <div className="hidden md:flex items-center gap-2">
