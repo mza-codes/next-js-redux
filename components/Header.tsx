@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaUserAlt } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5";
 import useUserModal from "../hooks/useUserModal";
 import { useMemo } from "react";
 import Search from "./Search";
@@ -28,7 +28,7 @@ export default function Header() {
                 type="button"
                 className="text-slate-800 hover:text-slate-800/70"
             >
-                <FaUserAlt size={24} />
+                <IoSettings size={24} />
             </button>
         ),
         []
@@ -48,7 +48,9 @@ export default function Header() {
                     {links.map((link) => (
                         <Link
                             key={link.name}
-                            className={`header-link ${path === link.path ? "border-green-600" : ""}`}
+                            className={`header-link ${
+                                path === link.path ? "border-green-600" : ""
+                            }`}
                             href={link.path}
                         >
                             {link.name}
@@ -63,15 +65,6 @@ export default function Header() {
                 {/* <div className="block md:hidden">
                     <Search />
                 </div> */}
-                <button
-                    type="button"
-                    onClick={() => {
-                        setDialogProps({ message: "This is Test?", action: dialog.onClose });
-                        dialog.onOpen();
-                    }}
-                >
-                    <MdMenu size={24} />
-                </button>
 
                 {userModalBtn}
             </div>

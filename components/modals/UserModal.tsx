@@ -4,7 +4,7 @@ import { MdClose } from "react-icons/md";
 import useUserModal from "../../hooks/useUserModal";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocalStore } from "../../store";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { nunito } from "../../fonts";
 import useConfirmDialog from "../../hooks/useConfirmDialog";
 
@@ -19,10 +19,8 @@ export default function UserModal({}: Props) {
     const store = useLocalStore();
     const confirmDialog = useConfirmDialog();
 
-    const { setDialogProps } = confirmDialog;
-
-    const handleClose = () => {
-        setDialogProps({
+    const handleCloseWConfirm = () => {
+        confirmDialog.setDialogProps({
             message: "Changes may not be saved, Continue ?",
             action: userModal.onClose,
         });
@@ -50,14 +48,16 @@ export default function UserModal({}: Props) {
                                     type="text"
                                     className="outline-none border-none p-2 max-w-[190px] w-fit overflow-hidden"
                                     placeholder={dummyName}
-                                    defaultValue={localStorage.getItem(nameKey) ?? dummyName}
+                                    defaultValue={
+                                        localStorage.getItem(nameKey) ?? dummyName
+                                    }
                                     ref={nameRef}
                                 />
                             </i>
                         </h2>
                         <button
                             type="button"
-                            onClick={handleClose}
+                            onClick={userModal.onClose}
                             className="close absolute right-3 top-3 text-rose-600 hover:text-rose-800/80"
                         >
                             <MdClose size={22} />
@@ -73,8 +73,9 @@ export default function UserModal({}: Props) {
                             type="button"
                             className="bg-red-600 hover:bg-red-700/80 p-2 text-white w-full rounded-lg font-semibold"
                             onClick={() => {
-                                setDialogProps({
-                                    message: "Are You Sure, This will delete all of your favourited data ?",
+                                confirmDialog.setDialogProps({
+                                    message:
+                                        "Are You Sure, This will delete all of your favourited data ?",
                                     action: store.resetState,
                                 });
                                 confirmDialog.onOpen();

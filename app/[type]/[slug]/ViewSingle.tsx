@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { DetailedMovie } from "../../../@types";
+import { MdFavorite } from "react-icons/md";
+import { DetailedMovie, Movie } from "../../../@types";
 import LoadBar from "../../../components/LoadBar";
 import PersonBar from "../../../components/PersonsBar";
 import { POSTER_URL } from "../../../contstants";
+import { useLocalStore } from "../../../store";
 import Trailer from "./Trailer";
 
 type Props = {
@@ -17,6 +19,7 @@ type Props = {
 export default function ViewSingle({ movie, type }: Props) {
     const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState(true);
+    const addMovie = useLocalStore((s) => s.addMovie);
     // const loaded = useRef({ banner: false, poster: false });
     const has = useMemo(
         () => ({
@@ -49,10 +52,17 @@ export default function ViewSingle({ movie, type }: Props) {
             <div className="flex z-40 flex-col md:flex-row justify-between">
                 <section className="m-3 p-2 text-white text-left flex flex-col max-w-[90vw] gap-2">
                     <h1 className="h3 drop-shadow-lg">
-                        {movie?.title || movie?.original_title || movie?.original_name || movie?.name}
+                        {movie?.title ||
+                            movie?.original_title ||
+                            movie?.original_name ||
+                            movie?.name}
                     </h1>
-                    <h1 className="h4 drop-shadow-lg">{movie?.release_date || movie?.first_air_date}</h1>
-                    <p className="text-base overview drop-shadow-lg">{movie?.overview} &nbsp;</p>
+                    <h1 className="h4 drop-shadow-lg">
+                        {movie?.release_date || movie?.first_air_date}
+                    </h1>
+                    <p className="text-base overview drop-shadow-lg">
+                        {movie?.overview} &nbsp;
+                    </p>
 
                     <div className="flex flex-row flex-wrap items-center gap-2">
                         <button
@@ -61,6 +71,13 @@ export default function ViewSingle({ movie, type }: Props) {
                             onClick={() => setIsOpen(true)}
                         >
                             Get Trailers
+                        </button>
+                        <button
+                            className="btn-1 text-rose-600 text-sm bg-white/40 hover:text-rose-700 hover:bg-white/80 rounded-md ntn-1 px-4"
+                            type="button"
+                            onClick={() => addMovie(movie as Movie)}
+                        >
+                            <MdFavorite size={24} />
                         </button>
                         {movie?.genres?.map((genre) => (
                             <Link
@@ -87,14 +104,18 @@ export default function ViewSingle({ movie, type }: Props) {
                 </section>
             </div>
             {has.cast ? (
-                <PersonBar title="Top Cast" actor={true} cast={movie?.credits?.cast ?? []} />
+                <PersonBar title="Top Cast" arr={movie?.credits?.cast ?? []} />
             ) : (
-                <h2 className="h6 text-rose-800 text-center py-2">No Cast Information!</h2>
+                <h2 className="h6 text-rose-800 text-center py-2">
+                    No Cast Information!
+                </h2>
             )}
             {has.crew ? (
-                <PersonBar title="Top Crew" actor={false} crew={movie?.credits?.crew ?? []} />
+                <PersonBar title="Top Crew" arr={movie?.credits?.crew ?? []} />
             ) : (
-                <h2 className="h6 text-rose-800 text-center py-2">No Crew Information!</h2>
+                <h2 className="h6 text-rose-800 text-center py-2">
+                    No Crew Information!
+                </h2>
             )}
             <Trailer movie={movie} open={[isOpen, setIsOpen]} />
         </main>

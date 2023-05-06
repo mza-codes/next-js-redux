@@ -19,3 +19,8 @@ export const fetchData = async (request: AxiosPromise) => {
 };
 
 export default TMDB;
+
+export const tmdb = {
+    getBaseURL:() => `https://api.themoviedb.org/3`,
+    getApiKey:() => `api_key=${process.env.TMDB_API_KEY!}`
+}

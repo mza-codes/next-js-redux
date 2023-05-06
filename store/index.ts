@@ -19,7 +19,7 @@ export const useLocalStore = create<CacheStore, [["zustand/persist", CacheStore]
             addMovie: (item) => {
                 let newArray: Movie[] = [];
                 if (get().movies.length > 0) {
-                    newArray = get().movies.filter((m) => m.id !== item.id);
+                    newArray = get().movies.filter((m) => m.id !== item.id) ?? [];
                 }
                 newArray.push(item);
 
