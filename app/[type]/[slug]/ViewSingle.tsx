@@ -72,13 +72,7 @@ export default function ViewSingle({ movie, type }: Props) {
                         >
                             Get Trailers
                         </button>
-                        <button
-                            className="btn-1 text-rose-600 text-sm bg-white/40 hover:text-rose-700 hover:bg-white/80 rounded-md ntn-1 px-4"
-                            type="button"
-                            onClick={() => addMovie(movie as Movie)}
-                        >
-                            <MdFavorite size={24} />
-                        </button>
+
                         {movie?.genres?.map((genre) => (
                             <Link
                                 prefetch={false}
@@ -93,14 +87,23 @@ export default function ViewSingle({ movie, type }: Props) {
                     </div>
                 </section>
                 <section className="m-3 p-2 items-center text-white md:items-end text-left flex flex-col gap-2 md:w-1/2">
-                    <img
-                        alt="Poster"
-                        src={`${POSTER_URL}${movie?.poster_path}`}
-                        width={280}
-                        height={400}
-                        className="min-w-[200px] add-bg h-full object-contain rounded-md portrait-poster"
-                        // onLoad={() => handleComplete("poster")}
-                    />
+                    <div className="relative">
+                        <img
+                            alt="Poster"
+                            src={`${POSTER_URL}${movie?.poster_path}`}
+                            width={280}
+                            height={400}
+                            className="min-w-[200px] add-bg h-full object-contain rounded-md portrait-poster"
+                            // onLoad={() => handleComplete("poster")}
+                        />
+                        <button
+                            className="btn-1 absolute -right-2 -top-1 opacity-0 hover:opacity-100 text-rose-600 hover:text-rose-700"
+                            type="button"
+                            onClick={() => addMovie(movie as Movie)}
+                        >
+                            <MdFavorite size={24} />
+                        </button>
+                    </div>
                 </section>
             </div>
             {has.cast ? (

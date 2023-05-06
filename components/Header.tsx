@@ -4,10 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoSettings } from "react-icons/io5";
 import useUserModal from "../hooks/useUserModal";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import Search from "./Search";
-import { MdMenu } from "react-icons/md";
-import useConfirmDialog from "../hooks/useConfirmDialog";
+import { themes } from "../contstants";
 
 const links = [
     { name: "Home", path: "/home" },
@@ -18,8 +17,7 @@ const links = [
 export default function Header() {
     const path = usePathname();
     const userModal = useUserModal();
-    const dialog = useConfirmDialog();
-    const { setDialogProps } = dialog;
+    const ran = useRef(false);
 
     const userModalBtn = useMemo(
         () => (
@@ -33,6 +31,23 @@ export default function Header() {
         ),
         []
     );
+
+    useEffect(() => {
+        if (!ran.current) {
+            console.count("setting theme () => ");
+            const theme = localStorage.getItem("app-theme");
+            // @ts-ignore
+            if (theme && themes.includes(theme)) {
+                document.documentElement.classList.replace(
+                    document.documentElement.classList[0],
+                    theme
+                );
+            }
+        }
+        return () => {
+            ran.current = true;
+        };
+    }, []);
 
     return (
         <header className="app-header px-4">
@@ -49,7 +64,9 @@ export default function Header() {
                         <Link
                             key={link.name}
                             className={`header-link ${
-                                path === link.path ? "border-green-600" : ""
+                                path === link.path
+                                    ? "border-green-600 font-extrabold"
+                                    : "font-bold"
                             }`}
                             href={link.path}
                         >

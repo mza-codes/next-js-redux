@@ -7,6 +7,7 @@ import { useLocalStore } from "../../store";
 import { useRef } from "react";
 import { nunito } from "../../fonts";
 import useConfirmDialog from "../../hooks/useConfirmDialog";
+import ThemeControl from "../ThemeControl";
 
 type Props = {};
 
@@ -83,6 +84,7 @@ export default function UserModal({}: Props) {
                         >
                             Clear Data
                         </button>
+                        <ThemeControl />
                     </motion.main>
                 </section>
             ) : null}

@@ -23,3 +23,13 @@ export const populate = {
     family: `/discover/movie?with_genres=10751`,
     popular: `/discover/movie?language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=free`,
 } as const;
+
+export const themes = [
+    "green",
+    "violet",
+    "skygreen",
+    "pink",
+    "material",
+    "indigo",
+    "yellow",
+];
