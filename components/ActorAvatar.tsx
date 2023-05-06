@@ -1,18 +1,18 @@
 "use client";
 
-import { Person } from "../@types";
+import { Crew, Person } from "../@types";
 import { GoHeart } from "react-icons/go";
 import Link from "next/link";
-import { storeData } from "../utils";
 import { useLocalStore } from "../store";
 import { ImgWithSkeleton } from "./LazyImage";
 
 type Props = {
-    person: Person;
+    person: Person | Crew;
 };
 
 export const ActorSmallPhoto = ({ person }: Props) => {
     const addPerson = useLocalStore((s) => s.addPerson);
+
     return (
         <div className="mx-1 p-3">
             <div className="relative">
@@ -42,7 +42,15 @@ export const ActorSmallPhoto = ({ person }: Props) => {
             <span className="text-white font-semibold text-base max-w-[100%]">
                 {person?.name || person?.original_name}
             </span>
-            <h4 className="text-gray-50 text-xs max-w-[100%]">{person?.character}</h4>
+            <h4 className="text-gray-50 text-xs max-w-[100%]">
+                {/* @ts-ignore */}
+                {person?.character ??
+                    // @ts-ignore
+                    person?.job ??
+                    person?.known_for_department ??
+                    // @ts-ignore
+                    person?.department}
+            </h4>
         </div>
     );
 };

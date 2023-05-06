@@ -10,13 +10,13 @@ export default function Search({}: Props) {
         <form action="/search" className="relative inline-flex gap-2">
             <input
                 name="q"
-                className={`py-1 pr-12 pl-4 rounded-tr-md rounded-tl-md max-w-[200px] border-green-500 invalid:border-red-500 border-b-[3.0px] bg-black/40 text-white`}
+                className={`search-input`}
                 required
                 pattern="^[a-zA-Z0-9][a-zA-Z0-9 ]*$"
                 minLength={2}
                 type="text"
                 ref={searchRef}
-                placeholder="Search.."
+                placeholder=" "
                 maxLength={50}
             />
             <input type="hidden" value={1} name="page" />

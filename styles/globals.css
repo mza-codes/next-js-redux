@@ -129,6 +129,25 @@ body {
     background: linear-gradient(to bottom, transparent 10%, var(--theme-color) 80%);
 }
 
+.search-input {
+    @apply py-1 pr-6 pl-4 rounded-tr-md rounded-tl-md bg-transparent max-w-[200px] border-b-[3.0px] text-white;
+    border-color: transparent;
+    transition: all 500ms ease-in-out;
+}
+
+.search-input:placeholder-shown {
+    max-width: 64px;
+}
+
+.search-input::placeholder {
+    color: #d6d6d6;
+}
+
+.search-input:focus-visible,
+.search-input:focus-within {
+    @apply border-green-500 invalid:border-red-500 bg-black/40 pr-12;
+}
+
 .icon {
     @apply opacity-0 hover:opacity-100 cursor-pointer;
 }
@@ -143,7 +162,11 @@ body {
 }
 
 .persons-container {
-    scroll-padding: 1rem;
+    scroll-padding: 2rem;
+}
+
+.prevent-scroll {
+    overflow: hidden !important;
 }
 
 /* LOADER BAR */

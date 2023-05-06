@@ -22,4 +22,4 @@ export const populate = {
     romance2: `/discover/movie?with_genres=10749`,
     family: `/discover/movie?with_genres=10751`,
     popular: `/discover/movie?language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=free`,
-};
+} as const;

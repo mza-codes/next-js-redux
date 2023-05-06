@@ -18,7 +18,7 @@ export function ImgWithSkeleton(props: Props) {
     );
 }
 
-export function ImgWithSkeletonV1(props: Props) {
+function ImgWithSkeletonV1(props: Props) {
     const [isLoaded, setIsLoaded] = useState(false);
     const imgRef = useRef(null);
 

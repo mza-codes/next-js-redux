@@ -48,7 +48,9 @@ export default function Header() {
                     {links.map((link) => (
                         <Link
                             key={link.name}
-                            className={`header-link ${path === link.path ? "border-green-600" : ""}`}
+                            className={`header-link ${
+                                path === link.path ? "border-green-600" : ""
+                            }`}
                             href={link.path}
                         >
                             {link.name}
@@ -63,15 +65,6 @@ export default function Header() {
                 {/* <div className="block md:hidden">
                     <Search />
                 </div> */}
-                <button
-                    type="button"
-                    onClick={() => {
-                        setDialogProps({ message: "This is Test?", action: dialog.onClose });
-                        dialog.onOpen();
-                    }}
-                >
-                    <MdMenu size={24} />
-                </button>
 
                 {userModalBtn}
             </div>

@@ -1,21 +1,18 @@
 "use client";
 
-import { RefObject, useRef } from "react";
+import { useRef } from "react";
 import { Crew, Person } from "../@types";
 import { ActorSmallPhoto } from "./ActorAvatar";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import { CrewSmallPhoto } from "./CrewAvatar";
 import { genRandom, handleScroll } from "../utils";
 
 type Props = {
-    cast?: Person[];
-    crew?: Crew[];
-    actor?: boolean;
+    arr: Person[] | Crew[];
     title: string;
 };
 
-export default function PersonBar({ cast, crew, actor = false, title }: Props) {
+export default function PersonBar({ arr, title }: Props) {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -23,7 +20,7 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
             <h2 className="font-righteous text-2xl py-2 ml-3 font-bold">
                 {title} &nbsp;
                 <span className="py-1 px-2 bg-green-200 font-black font-poppins text-sm rounded-md">
-                    {actor ? cast?.length : crew?.length}
+                    {arr?.length}
                 </span>
             </h2>
             <div
@@ -45,17 +42,12 @@ export default function PersonBar({ cast, crew, actor = false, title }: Props) {
                     <MdNavigateNext />
                 </button>
 
-                {actor
-                    ? cast
-                          ?.slice(0, 25)
-                          .map((person, i) => (
-                              <ActorSmallPhoto person={person} key={person?.id ?? i + genRandom(50) - 1} />
-                          ))
-                    : crew
-                          ?.slice(0, 25)
-                          .map((person, i) => (
-                              <CrewSmallPhoto person={person} key={person?.id ?? i + genRandom(50) - 1} />
-                          ))}
+                {arr?.slice(0, 25).map((person, i) => (
+                    <ActorSmallPhoto
+                        person={person}
+                        key={person?.id ?? i + genRandom(50) - 1}
+                    />
+                ))}
             </div>
         </div>
     );
