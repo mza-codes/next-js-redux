@@ -56,11 +56,11 @@ body {
     display: none;
 }
 
-.img-pacleholder {
+.img-placeholder {
     @apply bg-black bg-opacity-40 animate-pulse font-bold text-white;
 }
 
-.load-pacleholder {
+.load-placeholder {
     @apply bg-black bg-opacity-40 animate-pulse;
 }
 

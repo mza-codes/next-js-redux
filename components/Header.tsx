@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaUserAlt } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5";
 import useUserModal from "../hooks/useUserModal";
 import { useMemo } from "react";
 import Search from "./Search";
@@ -28,7 +28,7 @@ export default function Header() {
                 type="button"
                 className="text-slate-800 hover:text-slate-800/70"
             >
-                <FaUserAlt size={24} />
+                <IoSettings size={24} />
             </button>
         ),
         []
