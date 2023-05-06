@@ -2,19 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+button {
     /* border: 0.5px solid #fc5692; */
-    outline: none;
+    outline: transparent;
 }
 
 :root {
-    --theme-color: #00000070;
-    --header-height: 80px;
+    --theme-color: #00000077;
+    --header-height: 64px;
     --test: #ff2f28;
+    --primary-g: #fdba74;
+    --secondary-g: #ca8a04;
+    --text-white: #fff;
+    --text-black: #000;
+}
+
+.yellow {
+    --primary-g: #fdba74;
+    --secondary-g: #ca8a04;
+    --text-white: #fff;
+    --text-black: #000;
+}
+
+.green {
+    --primary-g: #49c7a7;
+    --secondary-g: #04ca67;
+}
+
+.violet {
+    --primary-g: #c74997;
+    --secondary-g: #048cca;
+}
+
+.skygreen {
+    --primary-g: #c7b549;
+    --secondary-g: #04cab6;
+}
+
+.pink {
+    --primary-g: #ff919d;
+    --secondary-g: #d7a729;
+}
+
+.material {
+    --primary-g: #000000a3;
+    --secondary-g: #fff9bf;
+    --text-black: #f5f5f5;
+}
+
+.indigo {
+    --primary-g: #4f33ad;
+    --secondary-g: #ff6095;
+    --text-white: #ccc;
+    --text-black: #fff;
 }
 
 body {
-    @apply bg-gradient-to-b from-orange-300 to-yellow-600;
+    background-image: linear-gradient(to bottom, var(--primary-g), var(--secondary-g));
 }
 
 .app-header {
@@ -34,12 +78,14 @@ body {
 
 .app-page {
     @apply w-full flex flex-col items-center justify-center;
-    min-height: calc(100vh - var(--header-height));
+    min-height: calc(100dvh - var(--header-height));
+    /* min-height: 100dvh;
+    padding-top: var(--header-height); */
     /* from-emerald-800 to-fuchsia-700 */
 }
 
 .header-link {
-    @apply rounded-t-sm border-b-2 bg-black/10 p-1 py-2 px-4 font-semibold text-black hover:bg-black/40 hover:text-white text-sm;
+    @apply rounded-t-sm border-b-2 bg-black/10 py-1 px-4 text-[var(--text-black)] hover:bg-black/40 hover:text-[var(--text-white)] text-sm;
 }
 
 .genre-button {
@@ -133,6 +179,7 @@ body {
     @apply py-1 pr-6 pl-4 rounded-tr-md rounded-tl-md bg-transparent max-w-[200px] border-b-[3.0px] text-white;
     border-color: transparent;
     transition: all 500ms ease-in-out;
+    outline: transparent;
 }
 
 .search-input:placeholder-shown {

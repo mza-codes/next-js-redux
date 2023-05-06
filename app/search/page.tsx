@@ -7,7 +7,7 @@ type Props = {
     };
 };
 
-export default function SearchPage({ searchParams }: Props) {
+export default async function SearchPage({ searchParams }: Props) {
     console.log(searchParams);
     return (
         <>
@@ -16,7 +16,9 @@ export default function SearchPage({ searchParams }: Props) {
             </h2>
             <div className="py-5 col center">
                 <h4 className="text-4xl">Uh'Uh.. This page is under development!</h4>
-                <Link className="genre-button" href={"/"}>Home</Link>
+                <Link className="genre-button" href={"/"}>
+                    Home
+                </Link>
             </div>
         </>
     );
