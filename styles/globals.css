@@ -53,7 +53,7 @@ button {
 .indigo {
     --primary-g: #4f33ad;
     --secondary-g: #ff6095;
-    --text-white: #000;
+    --text-white: #ccc;
     --text-black: #fff;
 }
 
@@ -69,7 +69,6 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    z-index: 101;
     @apply shadow-md gap-2;
 }
 

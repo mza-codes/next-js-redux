@@ -26,5 +26,12 @@ export default function useConfirmDialog() {
         onClose: () => setIsOpen(false),
         content: dialogProps,
         setDialogProps,
+        openWithContent: (message: ReactNode, action: Function) => {
+            setDialogProps({
+                action,
+                message,
+            });
+            setIsOpen(true);
+        },
     };
-};
+}

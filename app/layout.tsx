@@ -1,6 +1,7 @@
+import AtomSideBar from "../components/AtomSideBar";
 import ConfirmDialog from "../components/ConfirmDialog";
 import Header from "../components/Header";
-import UserModal from "../components/modals/UserModal";
+import AtomModal from "../components/modals/AtomModal";
 import Toast from "../components/Toast";
 import { nunito } from "../fonts";
 import "../styles/globals.css";
@@ -17,8 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Toast />
                 <Header />
                 <main className="app-page">{children}</main>
-                <UserModal />
                 <ConfirmDialog />
+                <AtomModal />
+                <AtomSideBar />
             </body>
         </html>
     );
