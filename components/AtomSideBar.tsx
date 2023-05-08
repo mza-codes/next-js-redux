@@ -29,7 +29,7 @@ export default function AtomSideBar() {
                         initial={{ opacity: 0, translateX: "-100%" }}
                         whileInView={{ opacity: 1, translateX: 0 }}
                         exit={{ opacity: 0, translateX: "-100%" }}
-                        transition={{ duration: 0.36 }}
+                        transition={{ duration: 0.26 }}
                         className="bg-white px-4 py-8 rounded-r-md shadow-md flex flex-col gap-4 min-w-[250px] sm:min-w-[340px] min-h-[100dvh] absolute left-0"
                     >
                         <button

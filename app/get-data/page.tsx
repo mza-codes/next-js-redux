@@ -1,5 +1,5 @@
 import Error from "../../components/Error";
-import TMDB, { tmdb } from "../../server/tmdb";
+import { tmdb } from "../../server/tmdb";
 import { genTitle } from "../../utils";
 import DisplayData from "./Client";
 
@@ -12,18 +12,17 @@ export default async function GetData() {
     const rev = 60 * 60;
 
     try {
-        // const { data } = await TMDB.get(`/movie/popular?page=${page}`);
         const data = await fetch(
             `${tmdb.getBaseURL()}/movie/popular?page=${page}&${tmdb.getApiKey()}`,
             {
                 next: {
+                    tags: ["popular"],
                     revalidate: rev * 24,
                 },
-                // cache: "no-store",
             }
         ).then((res) => res.json());
 
-        return <DisplayData items={data?.results} currentPage={page} />;
+        return <DisplayData items={data?.results} currentPage={page + 1} />;
     } catch (err: any) {
         console.log(`Error fetching ARRAY: page=${page}: `, err);
         return <Error message={err?.message} />;

@@ -13,14 +13,14 @@ export default function DisplayData({ items, currentPage = 2 }: Props) {
     const [data, setData] = useState<any[] | null>(items);
     const [loading, setLoading] = useState(false);
     const page = useRef(currentPage);
-    const observer = useRef<any>();
+    const observer = useRef<IntersectionObserver>();
 
-    const lastItem = useCallback((node: any) => {
+    const lastItem = useCallback((node: HTMLDivElement) => {
         if (loading) return; // loading state
         if (observer.current) observer.current?.disconnect();
         observer.current = new IntersectionObserver(
-            async (entries) => {
-                if (entries[0]?.isIntersecting) {
+            async ([entry]) => {
+                if (entry.isIntersecting) {
                     if (true) {
                         setLoading(true);
                         const values = await getMore(page.current);
@@ -50,7 +50,7 @@ export default function DisplayData({ items, currentPage = 2 }: Props) {
                     } else return <MovieCard movie={movie} key={movie?.id} />;
                 })}
             </main>
-            {loading && <Loader />}
+            <div className="py-4">{loading && <Loader />}</div>
         </section>
     );
 }

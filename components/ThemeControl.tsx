@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { IoMdColorPalette } from "react-icons/io";
+import { TbPaletteOff } from "react-icons/tb";
 import { themes } from "../contstants";
 
 export default function ThemeControl() {
@@ -43,10 +44,17 @@ export default function ThemeControl() {
             </select>
             <button
                 title="Random"
-                className="text-green-500 hover:text-green-600 p-2"
+                className="text-green-500 hover:text-green-600 p-2 icon-button"
                 onClick={randomizeTheme}
             >
                 <IoMdColorPalette size={28} />
+            </button>
+            <button
+                title="Clear Theme Settings"
+                className="text-red-500 hover:text-red-600 p-2 icon-button"
+                onClick={() => localStorage.removeItem("app-theme")}
+            >
+                <TbPaletteOff size={28} />
             </button>
         </div>
     );

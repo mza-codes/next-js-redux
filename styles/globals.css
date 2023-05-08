@@ -98,6 +98,15 @@ body {
     }
 }
 
+.icon-button {
+    @apply bg-transparent hover:bg-gray-100/90;
+    border-radius: 50%;
+}
+
+.article-link {
+    @apply text-white hover:text-opacity-70;
+}
+
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
