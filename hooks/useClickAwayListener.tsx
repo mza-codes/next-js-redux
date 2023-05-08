@@ -23,5 +23,5 @@ export default function useClickAwayListener({
 
         return () => backDropRef.current?.removeEventListener("click", action);
     }, dependencies);
-    return null;
+    return;
 }

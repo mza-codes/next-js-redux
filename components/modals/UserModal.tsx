@@ -10,17 +10,18 @@ const nameKey = "mflux-name";
 const dummyName = "Kosinski";
 
 export default function UserModalContent() {
-    const nameRef = useRef<HTMLInputElement | null>(null);
+    // const nameRef = useRef<HTMLInputElement | null>(null);
     const userModal = useModal();
     const store = useLocalStore();
     const confirmDialog = useConfirmDialog();
+    const timeRef = useRef<NodeJS.Timeout>();
 
     const handleCloseWConfirm = () => {
         confirmDialog.setDialogProps({
             message: "Changes may not be saved, Continue ?",
             action: userModal.onClose,
         });
-        localStorage.setItem(nameKey, nameRef.current?.value?.slice(0, 12) ?? dummyName);
+        // localStorage.setItem(nameKey, nameRef.current?.value?.slice(0, 12) ?? dummyName);
         confirmDialog.onOpen();
     };
 
@@ -34,7 +35,16 @@ export default function UserModalContent() {
                         className="outline-none border-none p-2 max-w-[190px] w-fit overflow-hidden"
                         placeholder={dummyName}
                         defaultValue={localStorage.getItem(nameKey) ?? dummyName}
-                        ref={nameRef}
+                        onChange={(e) => {
+                            clearTimeout(timeRef.current);
+                            timeRef.current = setTimeout(() => {
+                                console.count(`set name => "${e.target.value}"`);
+                                localStorage.setItem(
+                                    nameKey,
+                                    e.target.value?.slice(0, 12) ?? dummyName
+                                );
+                            }, 500);
+                        }}
                     />
                 </i>
             </h2>

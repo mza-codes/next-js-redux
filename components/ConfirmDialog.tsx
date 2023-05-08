@@ -1,16 +1,20 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useRef } from "react";
 import useConfirmDialog from "../hooks/useConfirmDialog";
 
 export default function ConfirmDialog() {
-    const dialog = useConfirmDialog();
-    const { content } = dialog;
+    const { content, ...dialog } = useConfirmDialog();
+    const bg = useRef<HTMLElement>(null);
 
     return (
         <AnimatePresence key={"confirm-dialog"}>
             {dialog.isOpen ? (
-                <section className={`fixed bg-gray-800/50 inset-0 col items-center justify-center z-10`}>
+                <section
+                    ref={bg}
+                    className={`fixed bg-gray-800/50 inset-0 col items-center justify-center z-10`}
+                >
                     <motion.main
                         initial={{ opacity: 0, scale: 0 }}
                         whileInView={{ opacity: 1, scale: 1 }}
