@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoSettings } from "react-icons/io5";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 
 import Search from "./Search";
 import { themes } from "../contstants";
@@ -12,6 +12,7 @@ import useModal from "../hooks/useModal";
 import UserModalContent from "./modals/UserModal";
 import useSideBar from "../hooks/useSideBar";
 import useConfirmDialog from "../hooks/useConfirmDialog";
+import useRunOnce from "../hooks/useRunOnce";
 
 const links = [
     { name: "Home", path: "/home" },
@@ -23,7 +24,6 @@ export default function Header() {
     const path = usePathname();
     const modal = useModal();
     const sidebar = useSideBar();
-    const ran = useRef(false);
     const dialog = useConfirmDialog();
 
     const menu = (
@@ -32,10 +32,10 @@ export default function Header() {
                 <Link
                     onClick={sidebar.onClose}
                     key={link.name}
-                    className={`font-bold py-2 px-4 text-sm rounded-md text-white hover:text-black ${
+                    className={`font-semibold py-2 px-4 text-sm rounded-md text-black shadow-md hover:shadow-lg ${
                         path === link.path
-                            ? "bg-green-600 hover:bg-green-500/60"
-                            : "bg-slate-600 hover:bg-slate-500/60"
+                            ? "bg-green-100 hover:bg-green-200/60"
+                            : "bg-slate-200 hover:bg-slate-300/60"
                     }`}
                     href={link.path}
                 >
@@ -65,21 +65,16 @@ export default function Header() {
         []
     );
 
-    useEffect(() => {
-        if (!ran.current) {
-            console.count("setting theme () => ");
-            const theme = localStorage.getItem("app-theme");
-            if (theme && themes.includes(theme)) {
-                document.documentElement.classList.replace(
-                    document.documentElement.classList[0],
-                    theme
-                );
-            }
+    useRunOnce(() => {
+        console.count("setting theme () => ");
+        const theme = localStorage.getItem("app-theme");
+        if (theme && themes.includes(theme)) {
+            document.documentElement.classList.replace(
+                document.documentElement.classList[0],
+                theme
+            );
         }
-        return () => {
-            ran.current = true;
-        };
-    }, []);
+    });
 
     return (
         <header className="app-header px-4">
