@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Page() {
     verifyEnv();
     return (
-        <section className="flex flex-col gap-2 items-center">
+        <section className="flex flex-col gap-2 items-center py-4">
             <img
                 className="bg-black py-2 px-4 rounded-lg bg-opacity-60 hover:bg-opacity-50"
                 alt="mFlux_logo"
@@ -21,7 +21,7 @@ export default function Page() {
                 height={80}
             />
 
-            <article className="text-xl font-medium text-black ml-3 p-2 max-w-[800px]">
+            <article className="text-sm sm:text-xl font-medium text-black ml-3 p-2 max-w-[800px]">
                 <b className="text-5xl text-[#fff]">mFlux</b> is built with TMDB API,
                 Using <strong className="text-white">Next.JS 13</strong> <br />
                 The role of this application is to provide latest movies & tv shows

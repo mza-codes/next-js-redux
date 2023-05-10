@@ -33,6 +33,7 @@ export default function ViewSingle({ movie, type }: Props) {
         <main className="min-h-[100dvh] w-full h-auto">
             <section className="relative">
                 {loading && <LoadBar loading={loading} />}
+                {/* SSR Image (change to reduce cost) */}
                 <Image
                     alt="Movie Banner"
                     src={
